@@ -7,7 +7,11 @@ class Home extends React.Component{
               <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
+<<<<<<< HEAD
                   Edit <code>new changes made by pedro</code> and save to reload.
+=======
+                  Edit <code>src/App.js</code> Juan.
+>>>>>>> be97a5605a33fecd50fa79f2b376cfad1a1e1c38
                 </p>
                 <a
                   className="App-link"
