@@ -1,27 +1,36 @@
 import React from "react";
-import logo from '../logo.svg';
 class Home extends React.Component{
     render(){
-        return (
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>new changes made by pedro</code> and save to reload.
-                  Edit <code>src/App.js</code> 
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React is super fucked up 
-                </a>
-              </header>
-             <div> Juans third change</div>
+        const imgSrc = "./felix-mooneeram-evlkOfkQ5rE-unsplash.jpg";
+        return(
+            <div className="container-fluid"  style = {{ backgroundImage: `url(${imgSrc})`,height: '800px',
+            backgroundSize: 'cover', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat',}}>
+               <div className="h-100 row align-items-center">
+                <div className="col-md-6 offset-md-3">
+                      <div className="card text-center">
+                        <h5 className="card-header">
+                          Movie Browser
+                        </h5>
+                        <div className="card-body">
+                          <div className="card-text">
+                            <div className="row">
+                            <label className="col-md-2"><b>Title:</b></label><input className="col-md-8" type="text"></input>
+                            </div>
+                            <br></br>
+                            <div className="row text-white">
+                              <a className="col-md-4 offset-md-2 btn btn-primary">Show Matching Movies</a>
+                              <a className="col-md-3 offset-md-1 btn btn-primary">Show All Movies</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div className="col-md-6 offset-5 text-white">
+                    Photo Credit: <a href="https://unsplash.com/@felixmooneeram">Felix Mooneeram</a>
+                  </div>
+                </div>
             </div>
-          );
+        );
     };
 }
 export default Home;
