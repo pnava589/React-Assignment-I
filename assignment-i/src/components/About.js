@@ -1,6 +1,6 @@
 import React from "react";
 //import { Link } from 'react-router-dom';
-import photo from './logo.svg';
+import photo from '../logo.svg';
 
 
 class About extends React.Component {
