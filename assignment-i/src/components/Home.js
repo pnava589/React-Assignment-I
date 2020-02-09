@@ -16,7 +16,7 @@ class Home extends React.Component{
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Learn React is fucked up 
+                  Learn React is very fucked up 
                 </a>
               </header>
              <div> Juans second change</div>
