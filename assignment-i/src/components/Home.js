@@ -19,7 +19,7 @@ class Home extends React.Component{
                   Learn React
                 </a>
               </header>
-             
+             <div> Juans second change</div>
             </div>
           );
     };
