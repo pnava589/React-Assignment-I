@@ -13,4 +13,4 @@ const App = function () {
   );
 }
 
-export default Home;
+export default App;
