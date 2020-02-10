@@ -1,5 +1,4 @@
 import React from "react";
-
 const HomeCard = () => 
                 <div className="col-md-6 offset-md-3">
                       <div className="card text-center">
@@ -13,8 +12,8 @@ const HomeCard = () =>
                             </div>
                             <br></br>
                             <div className="row text-white">
-                              <a className="col-md-4 offset-md-2 btn btn-primary">Show Matching Movies</a>
-                              <a className="col-md-3 offset-md-1 btn btn-primary">Show All Movies</a>
+                              <a href="/default" className="col-md-4 offset-md-2 btn btn-primary">Show Matching Movies</a>
+                              <a href="/default" className="col-md-3 offset-md-1 btn btn-primary">Show All Movies</a>
                             </div>
                           </div>
                         </div>
