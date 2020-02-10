@@ -1,5 +1,6 @@
 import React from "react";
 import HomeCard from "./HomeCard";
+
 class Home extends React.Component{
     render(){
         const imgSrc = "./felix-mooneeram-evlkOfkQ5rE-unsplash.jpg";
