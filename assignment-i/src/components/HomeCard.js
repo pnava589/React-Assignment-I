@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const HomeCard = () => 
                 <div className="col-md-6 offset-md-3">
@@ -14,7 +15,9 @@ const HomeCard = () =>
                             <br></br>
                             <div className="row text-white">
                               <a className="col-md-4 offset-md-2 btn btn-primary">Show Matching Movies</a>
-                              <a className="col-md-3 offset-md-1 btn btn-primary">Show All Movies</a>
+                              <Link to='/default' className="col-md-4">
+                                <button className="offset-md-1 btn btn-primary">Show All Movies</button>
+                                </Link>
                             </div>
                           </div>
                         </div>

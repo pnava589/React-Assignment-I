@@ -2,7 +2,14 @@ import React from "react";
 import HomeCard from "./HomeCard";
 
 class Home extends React.Component{
+
+constructor(props){
+    super(props);
+    
+}
+
     render(){
+      
         const imgSrc = "./felix-mooneeram-evlkOfkQ5rE-unsplash.jpg";
         return(
             <div className="container-fluid"  style = {{ backgroundImage: `url(${imgSrc})`,height: '800px',
