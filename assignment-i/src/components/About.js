@@ -7,26 +7,38 @@ class About extends React.Component {
  render() {
     
  return (
-    <div className = 'banner'
-    style = {{ backgroundImage: `url(${photo})`,
-    height: '800px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    backgroundRepeat: 'no-repeat',
-    }}>
-        <div >
-            <h1>About</h1>
-            <h3>More information coming up <br/>Stay tuned</h3>
-            <p>
-                
-                    <button>Browse</button>
+        <div>
+        <div className="jumbotron">
+            <div className="container">
+                <h1 className="display-3"> About </h1>
                 
                 
-                    <button>About</button>
-                
-            </p>
+                <p>This page provides information regarding this porject and the referenced sources </p>
+
+            </div>
+
         </div>
-    </div>
+
+        <div className="container">
+        <div className="row">
+            <div className="col-md-6 blog-main">
+                
+            <h1 className="blog-post">Team Members</h1>
+                <ul>
+                    <li>Juan Jimenez</li>
+                    <li>Pedro Navas</li>
+                </ul>
+                <h1 className="blog-post">Resources</h1>
+                <ul>
+                    <li>Bootstrap Documentation</li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+        </div>
+        
+        </div>
  );
  }
 }
