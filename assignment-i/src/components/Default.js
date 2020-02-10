@@ -1,5 +1,7 @@
 import React from "react";
-import DefaultHeader from "./DefaultHeader";
+import FavoritesList from "./FavoritesList";
+import MovieList from "./MovieList";
+import Filter from "./Filter";
 
 class Default extends React.Component{
     constructor(props){
@@ -8,8 +10,13 @@ class Default extends React.Component{
     }
     render(){
         return(
-            <div>
-                {this.props.movies.length + " movies available"}
+            <div className="container-fluid">
+                <FavoritesList />
+                <br/>
+                <div className="row">
+                    <Filter/>
+                    <MovieList movies={this.props.movies} />
+                </div>
             </div>
         );
     }

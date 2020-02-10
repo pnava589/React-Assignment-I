@@ -16,7 +16,7 @@ class App extends React.Component{
 
   async componentDidMount() {
     try {
-        const url = "http://randyconnolly.com/funwebdev/3rd/api/travel/images.php";
+        const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
         const response = await fetch(url);
         const jsonData = await response.json();
         this.setState( {movies: jsonData } );
@@ -30,7 +30,7 @@ class App extends React.Component{
    
     return(
 
-      <main >
+      <main>
         <DefaultHeader />
         <Route path='/' exact component={Home} />
         <Route path='/home' exact component={Home} />
