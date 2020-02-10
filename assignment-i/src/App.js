@@ -19,11 +19,36 @@ class App extends React.Component{
         const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
         const response = await fetch(url);
         const jsonData = await response.json();
-        this.setState( {movies: jsonData } );
+        //this.setState( {movies: jsonData } );
+        localStorage.setItem('data',JSON.stringify(jsonData));
+        
+        //console.log(getData[0].id);
         }
         catch (error) {
         console.error(error);
     }
+   }
+
+   filterMovies = (data)=>{
+    var getData = JSON.parse(localStorage.getItem('data'));
+    var filteredData =[];
+    var filtered = getData.filter(function(e){
+      return e.title.toLowerCase().includes(data.input.toLowerCase());
+    })
+    
+    /*for(var i=0; i<getData.length; i++){
+      for(var index=0; index < getData[0]; index++){
+        if(data.lowercase())
+      }
+    }*/
+
+
+    //console.log(input);
+    console.log(filteredData);
+    
+   
+
+
    }
   
   render(){
@@ -33,7 +58,7 @@ class App extends React.Component{
       <main>
         <DefaultHeader />
         <Route path='/' exact component={Home} />
-        <Route path='/home' exact component={Home} />
+        <Route path='/home' exact component={(props)=> <Home filterMovies={this.filterMovies}/>} />
         <Route path='/default' exact component={(props)=> <Default movies={this.state.movies}/>} />
         <Route path='/about' exact component={About}/>
       </main>
