@@ -5,12 +5,18 @@ import './components/About'
 import Home from './components/Home';
 
 
-const App = function () {
-  return (
-    <main>
-    <Home/>
-    </main>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {favorites: []};
+  }
+  render(){
+    return(
+      <main>
+        <Home/>
+      </main>
+    );
+  };
 }
 
 export default App;

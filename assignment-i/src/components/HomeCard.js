@@ -1,4 +1,5 @@
 import React from "react";
+
 const HomeCard = () => 
                 <div className="col-md-6 offset-md-3">
                       <div className="card text-center">
@@ -19,5 +20,5 @@ const HomeCard = () =>
                         </div>
                       </div>
                   </div>;
-                  
+
 export default HomeCard;
