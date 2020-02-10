@@ -4,12 +4,12 @@ import DefaultHeader from "./DefaultHeader";
 class Default extends React.Component{
     constructor(props){
         super(props);
-        console.log(this.props.movies);
+        
     }
     render(){
         return(
             <div>
-                Pedro
+                {this.props.movies.length + " movies available"}
             </div>
         );
     }
