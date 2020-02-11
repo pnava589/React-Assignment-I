@@ -4,22 +4,24 @@ class MovieList extends React.Component{
     render(){
         return(
                 <div className="col-md-8 offset-md-1 align-self-center text-center bg-light">
-                    <h5 clasName="col">List/Matches</h5>
+                    <h5 className="col">List/Matches</h5>
                     <div className="row">
-                        <h6 className="col-md-6">
+                        <b className="col-md-6">
                             Title
-                        </h6>
-                        <h6 className="col-md-3">
+                        </b>
+                        <b className="col-md-3">
                             Year
-                        </h6>
-                        <h6 className="col-md-3">
+                        </b>
+                        <b className="col-md-3">
                             Rating
-                        </h6>
+                        </b>
                     </div>
-                    <MovieItem/>
-                    <div className="row">
-                        {this.props.movies.length + " movies available"}
-                    </div>
+                    {this.props.movies.map((p)=><MovieItem title={p.title} 
+                                                                key={p.id} 
+                                                                year={p.release_date}
+                                                                rating={p.ratings.average}
+                                                                poster={p.poster}  />)}
+                    
                     
                 </div>     
         );
