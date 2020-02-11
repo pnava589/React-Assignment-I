@@ -6,6 +6,7 @@ import Filter from "./Filter";
 class Default extends React.Component{
     constructor(props){
         super(props);
+        this.state = {movies:this.props.movies};
         
     }
     render(){
@@ -17,7 +18,7 @@ class Default extends React.Component{
                 <br/>
                 <div className="row">
                     <Filter/>
-                    <MovieList movies={this.props.movies} />
+                    <MovieList movies={this.state.movies} />
                 </div>
             </div>
         );
