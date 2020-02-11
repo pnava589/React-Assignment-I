@@ -17,7 +17,7 @@ const HomeCard = () =>
                               <a className="col-md-4 offset-md-2 btn btn-primary">Show Matching Movies</a>
                               <Link to='/default' className="col-md-4">
                                 <button className="offset-md-1 btn btn-primary">Show All Movies</button>
-                                </Link>
+                              </Link>
                             </div>
                           </div>
                         </div>

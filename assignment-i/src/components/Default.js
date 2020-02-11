@@ -11,7 +11,9 @@ class Default extends React.Component{
     render(){
         return(
             <div className="container-fluid">
+                <br/>
                 <FavoritesList />
+                <hr/>
                 <br/>
                 <div className="row">
                     <Filter/>
