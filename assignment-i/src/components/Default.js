@@ -16,10 +16,11 @@ class Default extends React.Component{
         this.setState({favorites: temp});
     }
 
+    addFilter=()=>{
+        alert('hello');
+      }
+
     componentDidMount=()=>{
-
-
-        
         console.log(this.state.filter);
 
           var tempArray=[];
@@ -38,9 +39,7 @@ class Default extends React.Component{
 
     }
 
-  addFilter=()=>{
-    alert('hello');
-  }
+  
 
     render(){
         return(
