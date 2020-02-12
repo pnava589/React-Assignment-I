@@ -1,19 +1,16 @@
 import React from "react";
-
+import TitleForm from './TitleForm';
 class Filter extends React.Component{
     render(){
         return(
+
+            
             <div className="col-md-3 text-center bg-light">
                 <br/>
                 <h5 className="col">Movie Filters</h5>
                 <hr/>
-                <div className="container">
-                    <div className="row">
-                        <h6 className="text-left">Title</h6>
-                    </div>
-                    <div className="row">
-                        <input className="col" type="text" />
-                    </div>
+                <form className="container">
+                <TitleForm saveInput={this.props.addFilter}/>
                     <br/>
                     <div className="row">
                         <h6 className="text-left">Year</h6>
@@ -78,7 +75,8 @@ class Filter extends React.Component{
                         <input type="range" min="0" max="10" className="col"/>
                         <input type="range" min="0" max="10" className="col"/>
                     </div>
-                </div>
+
+                </form>
                 
 
                 

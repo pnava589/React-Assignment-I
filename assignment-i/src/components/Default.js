@@ -38,18 +38,10 @@ class Default extends React.Component{
 
     }
 
-    /*componentDidMount =()=>{
-    var tempArray=[];
-        
-          tempArray = this.state.movies.filter(function(e){
-          return e.title.toLowerCase().indexOf(this.state.filter.toLowerCase()) > 1; 
-          })
-          .sort((a,b)=>{return a.title>b.title});
+  addFilter=()=>{
+    alert('hello');
+  }
 
-          this.setState({movies:tempArray});
-        
-     
-    }*/
     render(){
         return(
             <div className="container-fluid">
@@ -58,7 +50,7 @@ class Default extends React.Component{
                 <hr/>
                 <br/>
                 <div className="row">
-                    <Filter/>
+                    <Filter addFilter={this.addFilter}/>
                     <MovieList movies={this.state.movies} addToFavs={this.addToFavs}/>
                 </div>
             </div>
