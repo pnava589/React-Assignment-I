@@ -62,8 +62,8 @@ class App extends React.Component{
         
         
 
-        <Route path='/default' exact render={(props)=><Default movies={this.state.movies}/>} />
-        <Route path="/default/:filter" render={({match})=><Default movies={this.state.movies} filter={match}/>} />
+        <Route path='/default' exact render={(props)=><Default movies={this.state.movies} favorites={this.state.favorites}/>} />
+        <Route path="/default/:filter" render={({match})=><Default movies={this.state.movies} filter={match} favorites={this.state.favorites}/>} />
         
         
         <Route path='/about' exact component={About}/>

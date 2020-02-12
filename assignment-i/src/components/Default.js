@@ -6,9 +6,14 @@ import Filter from "./Filter";
 class Default extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies:this.props.movies};
+        this.state = {movies:this.props.movies, favorites: this.props.favorites};
         
         
+    }
+    addToFavs = (id,poster) =>{
+        let temp = this.state.favorites;
+        temp.push({id: id, poster: poster});
+        this.setState({favorites: temp});
     }
 
     componentDidMount=()=>{
@@ -21,9 +26,12 @@ class Default extends React.Component{
           if(typeof (this.props.filter) !== 'undefined'){
           var tempFilter = this.props.filter.params.filter;
           tempArray = this.state.movies.filter(function(e){
-            return e.title.toLowerCase().indexOf(tempFilter.toLowerCase()) > 1; 
+            return e.title.toLowerCase().indexOf(tempFilter.toLowerCase()) >= 0; 
           })
-          this.setState({movies:tempArray});
+          if(tempArray.length > 0){
+            this.setState({movies:tempArray});
+          }
+         
         }
 
           
@@ -46,12 +54,12 @@ class Default extends React.Component{
         return(
             <div className="container-fluid">
                 <br/>
-                <FavoritesList />
+                <FavoritesList favorites={this.state.favorites} />
                 <hr/>
                 <br/>
                 <div className="row">
                     <Filter/>
-                    <MovieList movies={this.state.movies} />
+                    <MovieList movies={this.state.movies} addToFavs={this.addToFavs}/>
                 </div>
             </div>
         );

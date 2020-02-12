@@ -2,7 +2,12 @@ import React from "react";
 class MovieItem extends React.Component{
     constructor(props){
         super(props);
-        this.state = {title: this.props.title, year: this.props.year, rating: this.props.rating, poster: this.props.poster};
+        this.state = {title: this.props.title, year: this.props.year, rating: this.props.rating, poster: this.props.poster, id: this.props.id};
+        
+    };
+    addToFav = () =>{
+        
+        this.props.addToFavs(this.state.id, this.state.poster);
     };
     render(){
         const imgUrl = "https://image.tmdb.org/t/p/w92"+this.state.poster;
@@ -21,7 +26,7 @@ class MovieItem extends React.Component{
                             {this.state.rating}
                         </div>
                         <div className="col-md-1 align-self-center text-center">
-                            <button className="btn btn-primary"><i className="fas fa-heart"></i></button>
+                            <button className="btn btn-primary" onClick={this.addToFav}><i className="fas fa-heart"></i></button>
                         </div>
                         <div className="col-md-1 align-self-center">
                             <button className="btn btn-primary">View</button>

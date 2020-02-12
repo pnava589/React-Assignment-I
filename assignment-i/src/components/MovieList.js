@@ -25,11 +25,13 @@ class MovieList extends React.Component{
                     <div className="container">
 
                     
-                    {this.state.movies.map((p)=><MovieItem title={p.title} 
+                    {this.props.movies.map((p)=><MovieItem title={p.title} 
                                                                 key={p.id} 
                                                                 year={p.release_date}
                                                                 rating={p.ratings.average}
-                                                                poster={p.poster}  />)}
+                                                                poster={p.poster}
+                                                                id={p.id}
+                                                                addToFavs={this.props.addToFavs}  />)}
                     
                     </div>
                 </div>     
