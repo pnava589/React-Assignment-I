@@ -4,32 +4,39 @@ import { Link } from 'react-router-dom';
 class HomeCard extends React.Component{ 
   constructor(props){
     super(props);
-    this.state={input:''};
-    this.inputName = React.createRef();
+    this.state={input:'',buttonReference:''};
+    //this.buttonReference = React.createRef();
     console.log(this.props.filterMovies);
     
     
   }
 
+  /*componentDidMount=()=>{
+    this.buttonReference=this.buttonReference.name;
+    console.log(this.buttonReference);
+  }*/
+
  
 
-  handleSubmit=(e)=>{
+  handleChange=(e)=>{
     
     e.preventDefault();
     let newReference = [];
-    newReference.userInput = this.inputName.current.value;
-    newReference.typeOfSearch = e.target.name;
-    console.log(this.props);
-    this.props.filterMovies(newReference);
+    newReference.userInput = e.currentTarget.value;
+    console.log(newReference);
+    this.setState({input:newReference});
+    
     
   }
+
+
 
 
 
 
 
   render(){
-    
+    console.log(this.state.input);
     return(<div className="col-md-6 offset-md-3">
     <div className="card text-center">
       <h5 className="card-header">
@@ -39,15 +46,15 @@ class HomeCard extends React.Component{
         <div className="card-text">
           <form >
             <div className="row">
-          <label className="col-md-2"><b>Title:</b></label><input className="col-md-8" name="input" ref={this.inputName}></input>
+          <label className="col-md-2"><b>Title:</b></label><input className="col-md-8" name="input"  onChange={this.handleChange}></input>
           </div>
           <br></br>
           <div className="text-white row">
-            <Link to='/default' onClick={this.handleSubmit} >
-            <button className="col-md-4 offset-md-2 btn btn-primary" type='submit' name="matching" >Show Matching Movies</button>
-            </Link>
             
-              <button className="offset-md-1 btn btn-primary" type='submit' name='all' onClick={this.handleSubmit}>Show All Movies</button>
+            <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary" value=" " name="matching" >Show Matching Movies</Link>
+            
+            
+              <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
               
           </div>
           </form>

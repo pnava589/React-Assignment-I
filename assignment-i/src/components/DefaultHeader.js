@@ -9,6 +9,9 @@ const DefaultHeader = () =>
             <Link to='/about'>
             <button className="btn btn-primary my-2 text-white">About</button>
             </Link>
+            <Link to='/default'>
+            <button className="btn btn-primary my-2 text-white">default</button>
+            </Link>
         </nav>;
 
 export default DefaultHeader;

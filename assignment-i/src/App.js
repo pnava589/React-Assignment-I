@@ -23,7 +23,7 @@ class App extends React.Component{
         const jsonData = await response.json();
         //this.setState( {movies: jsonData } );
         localStorage.setItem('data',JSON.stringify(jsonData));
-        
+        this.setState({movies:JSON.parse(localStorage.getItem('data'))});
         }
         catch (error) {
         console.error(error);
@@ -32,33 +32,42 @@ class App extends React.Component{
 
    
 
-   filterMovies =(data)=>{
+   /*filterMovies =(data)=>{
     
       var getData = JSON.parse(localStorage.getItem('data'));
       var tempArray=[];
       if(data.typeOfSearch == 'matching'){
-      tempArray = getData.filter(function(e){
-      return e.title.toLowerCase().indexOf(data.userInput.toLowerCase()) > 1; 
-      })
-      this.setState({movies:tempArray});
+        tempArray = getData.filter(function(e){
+        return e.title.toLowerCase().indexOf(data.userInput.toLowerCase()) > 1; 
+        })
+        this.setState({movies:tempArray});
       
       }
+
       else this.setState({movies:getData});
    
-  }
+  }*/
   
   render(){
    
     return(
 
       <main>
+        
         <DefaultHeader />
         
+        <Route path='/' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
         <Route path='/home' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
         
+        
+        
+
         <Route path='/default' exact render={(props)=><Default movies={this.state.movies}/>} />
+        <Route path="/default/:filter" render={({match})=><Default movies={this.state.movies} filter={match}/>} />
+        
         
         <Route path='/about' exact component={About}/>
+        
       </main>
     );
   }

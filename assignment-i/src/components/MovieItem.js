@@ -15,7 +15,7 @@ class MovieItem extends React.Component{
                             <h6>{this.state.title}</h6>
                         </div>
                         <div className="col-md-3 align-self-center text-center">
-                            {this.state.year}
+                            {new Date(this.state.year).getFullYear()}
                         </div>
                         <div className="col-md-1 align-self-center text-center">
                             {this.state.rating}
