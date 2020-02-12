@@ -1,5 +1,6 @@
 import React from "react";
 import TitleForm from './TitleForm';
+import { Link } from 'react-router-dom';
 class Filter extends React.Component{
     render(){
         return(
@@ -78,7 +79,7 @@ class Filter extends React.Component{
 
                 </form>
                 
-
+                <Link to='/default' className="col-md-4 offset-md-2 btn btn-primary">Clear</Link>
                 
             </div>
         );

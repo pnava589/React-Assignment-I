@@ -16,12 +16,22 @@ class Default extends React.Component{
         this.setState({favorites: temp});
     }
 
-    addFilter=(input,filterName)=>{
-        alert('hello');
+    addFilter=(input)=>{
+        //console.log(input); // [value:'a',name: 'title']
+       
+        var tempArray=[];
+        var name = input.name;
+        tempArray = this.state.movies.filter(function(e){
+        return e[name].toLowerCase().indexOf(input.value.toLowerCase()) >= 0;
+          })
+        
+        this.setState({movies:tempArray});
+        
+
       }
 
     componentDidMount=()=>{
-        console.log(this.state.filter);
+        //console.log(this.state.filter);
 
           var tempArray=[];
           if(typeof (this.props.filter) !== 'undefined'){

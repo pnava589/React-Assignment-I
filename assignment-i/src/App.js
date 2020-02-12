@@ -7,7 +7,7 @@ import Default from './components/Default';
 import { Route } from 'react-router-dom';
 import About from './components/About';
 import DefaultHeader from './components/DefaultHeader';
-import * as cloneDeep from '../node_modules/lodash/cloneDeep.js';
+
 
 class App extends React.Component{
   constructor(props){
