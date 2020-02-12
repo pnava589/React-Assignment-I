@@ -1,6 +1,10 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 class MovieList extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {movies: this.props.movies};
+    }
     render(){
         return(
                 <div className="col-md-8 offset-md-1 align-self-center text-center bg-light">
@@ -21,7 +25,7 @@ class MovieList extends React.Component{
                     <div className="container">
 
                     
-                    {this.props.movies.map((p)=><MovieItem title={p.title} 
+                    {this.state.movies.map((p)=><MovieItem title={p.title} 
                                                                 key={p.id} 
                                                                 year={p.release_date}
                                                                 rating={p.ratings.average}

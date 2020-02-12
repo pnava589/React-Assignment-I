@@ -21,7 +21,7 @@ class MovieItem extends React.Component{
                             {this.state.rating}
                         </div>
                         <div className="col-md-1 align-self-center text-center">
-                            <button className="btn btn-primary"><i class="fas fa-heart"></i></button>
+                            <button className="btn btn-primary"><i className="fas fa-heart"></i></button>
                         </div>
                         <div className="col-md-1 align-self-center">
                             <button className="btn btn-primary">View</button>
