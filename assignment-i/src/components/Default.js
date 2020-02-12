@@ -16,7 +16,7 @@ class Default extends React.Component{
         this.setState({favorites: temp});
     }
 
-    addFilter=()=>{
+    addFilter=(input,filterName)=>{
         alert('hello');
       }
 
@@ -34,13 +34,8 @@ class Default extends React.Component{
           }
          
         }
-
-          
-
     }
-
-  
-
+    
     render(){
         return(
             <div className="container-fluid">
