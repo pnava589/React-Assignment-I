@@ -11,19 +11,19 @@ class MovieList extends React.Component{
                     <br/>
                     <h5 className="col">List/Matches</h5>
                     <hr/>
+                    
+                    <div className="container">
                     <div className="row">
-                        <b className="col-md-6">
+                        <b className="col-md-5 offset-md-1 align-self-center text-center">
                             Title
                         </b>
-                        <b className="col-md-3">
+                        <b className="col-md-3 align-self-center text-center">
                             Year
                         </b>
-                        <b className="col-md-3">
+                        <b className="col-md-1 align-self-center text-left">
                             Rating
                         </b>
                     </div>
-                    <div className="container">
-
                     
                     {this.props.movies.map((p)=><MovieItem title={p.title} 
                                                                 key={p.id} 
