@@ -18,7 +18,7 @@ class App extends React.Component{
   
   async componentDidMount() {
     try {
-        const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
+        const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
         const response = await fetch(url);
         const jsonData = await response.json();
         //this.setState( {movies: jsonData } );
