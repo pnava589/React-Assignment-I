@@ -25,6 +25,8 @@ class MovieList extends React.Component{
                         </b>
                     </div>
                     
+
+                    <div className="container" style={{height: "26em", overflowY: "scroll"}}>
                     {this.props.movies.map((p)=><MovieItem title={p.title} 
                                                                 key={p.id} 
                                                                 year={p.release_date}
@@ -32,7 +34,7 @@ class MovieList extends React.Component{
                                                                 poster={p.poster}
                                                                 id={p.id}
                                                                 addToFavs={this.props.addToFavs}  />)}
-                    
+                    </div>
                     </div>
                 </div>     
         );
