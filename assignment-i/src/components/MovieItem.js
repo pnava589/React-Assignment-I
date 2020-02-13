@@ -7,14 +7,14 @@ class MovieItem extends React.Component{
     };
     addToFav = () =>{
         
-        this.props.addToFavs(this.state.id, this.state.poster);
+        this.props.addToFavs(this.state.id, this.state.poster, this.state.title);
     };
     render(){
         const imgUrl = "https://image.tmdb.org/t/p/w92"+this.state.poster;
         return(
             <div className="row">
                         <div className="col-md-1">
-                            <img className="img-thumbnail" src={imgUrl}/>
+                            <img className="img-thumbnail" src={imgUrl} alt={this.title}/>
                         </div>
                         <div className="col-md-5 align-self-center text-center">
                             <h6>{this.state.title}</h6>

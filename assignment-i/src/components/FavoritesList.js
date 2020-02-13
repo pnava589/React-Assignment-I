@@ -13,7 +13,8 @@ class FavoritesList extends React.Component{
                     </div>
                     {this.state.favorites.map((f)=><FavoriteItem 
                                                     poster={f.poster}
-                                                    key={f.id}/>)}
+                                                    key={f.id}
+                                                    title={f.title}/>)}
 
                 </div>
         );

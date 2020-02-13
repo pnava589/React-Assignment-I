@@ -10,9 +10,9 @@ class Default extends React.Component{
         
         
     }
-    addToFavs = (id,poster) =>{
+    addToFavs = (id,poster,title) =>{
         let temp = this.state.favorites;
-        temp.push({id: id, poster: poster});
+        temp.push({id: id, poster: poster, title: title});
         this.setState({favorites: temp});
     }
 
