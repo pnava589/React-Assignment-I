@@ -110,9 +110,12 @@ class Filter extends React.Component{
                     </div>
 
                 </form >
+                <br/>
+                <hr/>
+                <br/>
                 <div className='btn-toolbar'>  
-                <a className="col-md-5  btn btn-primary text-white" onClick={this.handlesubmit}>Filter</a>
-                <a to='/default' className="col-md-5 btn btn-primary text-white" onClick={this.resetFields}>Clear</a>
+                <a className="col-md-5  btn btn-primary text-white " onClick={this.handlesubmit}>Filter</a>
+                <a to='/default' className="col-md-5 btn btn-primary text-white offset-md-1" onClick={this.resetFields}>Clear</a>
                 </div>
             </div>
         );
