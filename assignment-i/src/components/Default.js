@@ -70,7 +70,10 @@ class Default extends React.Component{
     
         return JSON.parse(localStorage.getItem('data')); 
     }
-
+    hideFavComp=()=>{
+        if(this.state.showFav){ this.setState({showFav: false}) }
+        else{ this.setState({showFav: true}) }
+    }
    
     render(){
         if (this.state.noResult){
