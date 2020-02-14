@@ -5,6 +5,12 @@ class FavoritesList extends React.Component{
         super(props);
         this.state = {favorites: this.props.favorites}
     }
+    remove=(id)=>{
+        const indexOfFav = this.state.favorites.find(f => f.id === id);
+        let ind = this.state.favorites.indexOf(indexOfFav);
+        this.state.favorites.splice( ind , 1);
+        this.setState(this.state);
+    }
     render(){
         return(
             <div className="row text-white">
@@ -14,7 +20,9 @@ class FavoritesList extends React.Component{
                     {this.state.favorites.map((f)=><FavoriteItem 
                                                     poster={f.poster}
                                                     key={f.id}
-                                                    title={f.title}/>)}
+                                                    id={f.id}
+                                                    title={f.title}
+                                                    remove={this.remove}/>)}
 
                 </div>
         );

@@ -6,10 +6,12 @@ import Filter from "./Filter";
 class Default extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies:this.props.movies, favorites: this.props.favorites, noResult: false, query: "All Movies"};
+        this.state = {movies:this.props.movies, favorites: this.props.favorites, noResult: false, query: "All Movies",
+                        showFav: true};
         
         
     }
+    
     addToFavs = (id,poster,title) =>{
         let temp = this.state.favorites;
         temp.push({id: id, poster: poster, title: title});
@@ -48,13 +50,18 @@ class Default extends React.Component{
 
         }
     }
+    hideFavComp=()=>{
+        if(this.state.showFav){ this.setState({showFav: false}) }
+        else{ this.setState({showFav: true}) }
+    }
     
     render(){
         if (this.state.noResult){
             return(
                 <div className="container-fluid">
                     <br/>
-                    <FavoritesList favorites={this.state.favorites} />
+                    {this.state.showFav && <FavoritesList favorites={this.state.favorites} />}
+                    <button className="btn btn-primary" onClick={this.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
                     <hr/>
                     <br/>
                     <div className="row">
@@ -69,7 +76,8 @@ class Default extends React.Component{
             return(
                 <div className="container-fluid">
                     <br/>
-                    <FavoritesList favorites={this.state.favorites} />
+                    {this.state.showFav && <FavoritesList favorites={this.state.favorites} />}
+                    <button className="btn btn-primary" onClick={this.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
                     <hr/>
                     <br/>
                     <div className="row">
