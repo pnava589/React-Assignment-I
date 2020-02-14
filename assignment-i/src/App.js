@@ -17,17 +17,23 @@ class App extends React.Component{
 
   
   async componentDidMount() {
-    try {
-        const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
-        const response = await fetch(url);
-        const jsonData = await response.json();
-        //this.setState( {movies: jsonData } );
-        localStorage.setItem('data',JSON.stringify(jsonData));
-        this.setState({movies:JSON.parse(localStorage.getItem('data'))});
-        }
-        catch (error) {
-        console.error(error);
+    if(JSON.parse(localStorage.getItem('data')) == null){
+        console.log("Local sotrage empty");
+        try {
+          const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
+          const response = await fetch(url);
+          const jsonData = await response.json();
+          //this.setState( {movies: jsonData } );
+          localStorage.setItem('data',JSON.stringify(jsonData));
+          this.setState({movies:JSON.parse(localStorage.getItem('data'))});
+          }
+          catch (error) {
+          console.error(error);
+          }
     }
+    else this.setState({movies:JSON.parse(localStorage.getItem('data'))});
+   
+    
    }
 
    

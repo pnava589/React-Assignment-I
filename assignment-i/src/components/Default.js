@@ -33,9 +33,11 @@ class Default extends React.Component{
       }
 
     componentDidMount=()=>{
-        //console.log(this.state.filter);
-
-          var tempArray=[];
+        //The line below is for testing of the app locally so you dont need to go home
+        //First must be removed for production
+        if(this.props.movies.length==0) this.setState({movies:JSON.parse(localStorage.getItem('data'))});
+        //--------------------------------------------------------------------------
+        var tempArray=[];
           if(typeof (this.props.filter) !== 'undefined'){
           var tempFilter = this.props.filter.params.filter;
           tempArray = this.state.movies.filter(function(e){
@@ -49,6 +51,7 @@ class Default extends React.Component{
           }
 
         }
+        
     }
     hideFavComp=()=>{
         if(this.state.showFav){ this.setState({showFav: false}) }
