@@ -11,11 +11,6 @@ class HomeCard extends React.Component{
     
   }
 
-  /*componentDidMount=()=>{
-    this.buttonReference=this.buttonReference.name;
-    console.log(this.buttonReference);
-  }*/
-
  
 
   handleChange=(e)=>{
@@ -28,12 +23,6 @@ class HomeCard extends React.Component{
     
     
   }
-
-
-
-
-
-
 
   render(){
     console.log(this.state.input);
@@ -54,7 +43,7 @@ class HomeCard extends React.Component{
             <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary" value=" " name="matching" >Show Matching Movies</Link>
             
             
-              <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
+            <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
               
           </div>
           </form>

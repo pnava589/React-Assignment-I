@@ -36,23 +36,6 @@ class App extends React.Component{
     
    }
 
-   
-
-   /*filterMovies =(data)=>{
-    
-      var getData = JSON.parse(localStorage.getItem('data'));
-      var tempArray=[];
-      if(data.typeOfSearch == 'matching'){
-        tempArray = getData.filter(function(e){
-        return e.title.toLowerCase().indexOf(data.userInput.toLowerCase()) > 1; 
-        })
-        this.setState({movies:tempArray});
-      
-      }
-
-      else this.setState({movies:getData});
-   
-  }*/
   
   render(){
    

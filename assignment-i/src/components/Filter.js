@@ -2,6 +2,38 @@ import React from "react";
 import TitleForm from './TitleForm';
 import { Link } from 'react-router-dom';
 class Filter extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={ title:[],
+                     before:[]
+                   }
+        console.log(this.props);
+    }
+    
+    handleChange=(e)=>{
+        var userInput = [];
+        userInput.value = e.target.value;
+        userInput.name = e.target.name;
+        this.setTheState(userInput);
+        
+    }
+
+    setTheState=(input)=>{
+    if(input.name=="title"){this.setState({title:input});}
+    if(input.name=="before"){this.setState({before:input});}
+    
+    }
+
+    handlesubmit=()=>{
+        console.log(this.state);
+        this.props.addFilter(this.state.title); // left off here need to re-think this 
+    }
+
+    resetFields=()=>{
+        this.myForm.reset();
+        this.props.resetState();
+    }
+    
     render(){
         return(
 
@@ -10,8 +42,8 @@ class Filter extends React.Component{
                 <br/>
                 <h5 className="col">Movie Filters</h5>
                 <hr/>
-                <form className="container">
-                <TitleForm saveInput={this.props.addFilter}/>
+                <form className="container" ref={(el)=>this.myForm = el}>
+                <TitleForm handleChange={this.handleChange}/>
                     <br/>
                     <div className="row">
                         <h6 className="text-left">Year</h6>
@@ -23,7 +55,7 @@ class Filter extends React.Component{
                         <div className="col-5">
                             <p>Before</p>
                         </div>
-                        <input className="col"/>
+                        <input className="col" name="before" onChange={this.handleChange}/>
                     </div>
                     <div className="row ">
                         <div className="col-1">
@@ -77,10 +109,11 @@ class Filter extends React.Component{
                         <input type="range" min="0" max="10" className="col"/>
                     </div>
 
-                </form>
-                
-                <Link to='/default' className="col-md-4 offset-md-2 btn btn-primary">Clear</Link>
-                
+                </form >
+                <div className='btn-toolbar'>  
+                <a className="col-md-5  btn btn-primary text-white" onClick={this.handlesubmit}>Filter</a>
+                <a to='/default' className="col-md-5 btn btn-primary text-white" onClick={this.resetFields}>Clear</a>
+                </div>
             </div>
         );
     }

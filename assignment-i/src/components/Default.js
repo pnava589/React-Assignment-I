@@ -11,6 +11,18 @@ class Default extends React.Component{
         
         
     }
+
+    resetState=()=>{
+
+        if(this.props.filter !== 'undefined'){
+            this.setState({movies:this.getInitialFilteredMovieList()});
+    
+        }
+        else this.setState({movies:this.getFullMovieList()});
+    
+    }
+
+
     
     addToFavs = (id,poster,title) =>{
         let temp = this.state.favorites;
@@ -19,45 +31,47 @@ class Default extends React.Component{
     }
 
     addFilter=(input)=>{
-        //console.log(input); // [value:'a',name: 'title']
-       
-        var tempArray=[];
-        var name = input.name;
-        tempArray = this.state.movies.filter(function(e){
-        return e[name].toLowerCase().indexOf(input.value.toLowerCase()) >= 0;
-          })
         
-        this.setState({movies:tempArray});
+        let filteredMovies = this.state.movies.filter((movie)=>{
+            return movie[input.name].toLowerCase().includes(input.value.toLowerCase())
+        });
+        this.setState({movies:filteredMovies});
         
-
-      }
+    }
 
     componentDidMount=()=>{
-        //The line below is for testing of the app locally so you dont need to go home
-        //First must be removed for production
-        if(this.props.movies.length==0) this.setState({movies:JSON.parse(localStorage.getItem('data'))});
-        //--------------------------------------------------------------------------
-        var tempArray=[];
-          if(typeof (this.props.filter) !== 'undefined'){
-          var tempFilter = this.props.filter.params.filter;
-          tempArray = this.state.movies.filter(function(e){
-            return e.title.toLowerCase().indexOf(tempFilter.toLowerCase()) >= 0; 
-          })
-          if(tempArray.length > 0){
-            this.setState({movies:tempArray, query: this.props.filter.params.filter});
+
+        if(typeof (this.props.filter) !== 'undefined'){
+          if(this.getInitialFilteredMovieList().length > 0){
+            this.setState({movies:this.getInitialFilteredMovieList(), query: this.props.filter.params.filter});
           }
           else{
               this.setState({noResult: true, query: this.props.filter.params.filter});
           }
-
+         }
+         else this.setState({movies:this.getFullMovieList()});
         }
-        
-    }
-    hideFavComp=()=>{
-        if(this.state.showFav){ this.setState({showFav: false}) }
-        else{ this.setState({showFav: true}) }
-    }
     
+
+    getInitialFilteredMovieList=()=>{
+       
+        var tempArray=[];
+          
+          var tempFilter = this.props.filter.params.filter;
+          tempArray = this.getFullMovieList().filter(function(e){
+            return e.title.toLowerCase().includes(tempFilter.toLowerCase()); 
+          });
+          return tempArray;
+        
+         
+    }
+
+    getFullMovieList=()=>{
+    
+        return JSON.parse(localStorage.getItem('data')); 
+    }
+
+   
     render(){
         if (this.state.noResult){
             return(
@@ -69,7 +83,7 @@ class Default extends React.Component{
                     <br/>
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
-                        <Filter addFilter={this.addFilter}/>
+                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"}/>
                     </div>
                 </div>
@@ -84,7 +98,7 @@ class Default extends React.Component{
                     <hr/>
                     <br/>
                     <div className="row">
-                        <Filter addFilter={this.addFilter}/>
+                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query}/>
                     </div>
                 </div>
