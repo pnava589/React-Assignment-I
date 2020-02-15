@@ -13,8 +13,9 @@ class Default extends React.Component{
     }
 
     resetState=()=>{
-
-        if(this.props.filter !== 'undefined'){
+        debugger
+        console.log(this.props.filter);
+        if(typeof(this.props.filter) !== 'undefined'){
             this.setState({movies:this.getInitialFilteredMovieList()});
     
         }
@@ -40,6 +41,7 @@ class Default extends React.Component{
     }
 
     componentDidMount=()=>{
+        console.log(this.props.filter);
 
         if(typeof (this.props.filter) !== 'undefined'){
           if(this.getInitialFilteredMovieList().length > 0){
