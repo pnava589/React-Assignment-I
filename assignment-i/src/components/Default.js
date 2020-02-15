@@ -12,8 +12,26 @@ class Default extends React.Component{
         
     }
 
+    
+    addYearFilter=(filter)=>{
+        let tempArray = this.state.movies;
+        if(filter.name=='before')
+            {
+                let results = tempArray.filter((e)=> new Date(e.release_date).getFullYear() < filter.value);
+                this.setState({movies:results});
+            }
+
+        else if(filter.name=='after')
+            {
+                let results = tempArray.filter((e)=> new Date(e.release_date).getFullYear() > filter.value);
+                this.setState({movies:results});   
+            }
+        
+        }
+        
+    
+    
     resetState=()=>{
-        debugger
         console.log(this.props.filter);
         if(typeof(this.props.filter) !== 'undefined'){
             this.setState({movies:this.getInitialFilteredMovieList()});
@@ -32,12 +50,12 @@ class Default extends React.Component{
     }
 
     addFilter=(input)=>{
-        
+        if(input.value.length !== 0){
         let filteredMovies = this.state.movies.filter((movie)=>{
             return movie[input.name].toLowerCase().includes(input.value.toLowerCase())
         });
         this.setState({movies:filteredMovies});
-        
+      }
     }
 
     componentDidMount=()=>{
@@ -52,6 +70,7 @@ class Default extends React.Component{
           }
          }
          else this.setState({movies:this.getFullMovieList()});
+         
         }
     
 
@@ -76,6 +95,9 @@ class Default extends React.Component{
         if(this.state.showFav){ this.setState({showFav: false}) }
         else{ this.setState({showFav: true}) }
     }
+
+    
+
    
     render(){
         if (this.state.noResult){
@@ -88,7 +110,7 @@ class Default extends React.Component{
                     <br/>
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
-                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
+                        <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"}/>
                     </div>
                 </div>
@@ -103,7 +125,7 @@ class Default extends React.Component{
                     <hr/>
                     <br/>
                     <div className="row">
-                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
+                        <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query}/>
                     </div>
                 </div>

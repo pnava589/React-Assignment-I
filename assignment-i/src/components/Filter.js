@@ -5,28 +5,55 @@ class Filter extends React.Component{
     constructor(props){
         super(props);
         this.state={ title:[],
-                     before:[]
+                     yearFilter:[]
+                     
                    }
+        this.beforeRadio = React.createRef(); 
+        this.afterRadio = React.createRef();
+        this.betweenRadio = React.createRef();
+ 
         console.log(this.props);
     }
+
+    checkButton=(e)=>{
+        e.checked = true;
+    }
     
-    handleChange=(e)=>{
+    handleChangeInTitle=(e)=>{
+        
+        console.log(this.beforeRadio);
         var userInput = [];
         userInput.value = e.target.value;
         userInput.name = e.target.name;
-        this.setTheState(userInput);
+        this.setState({title:userInput});
+        
         
     }
 
-    setTheState=(input)=>{
-    if(input.name=="title"){this.setState({title:input});}
-    if(input.name=="before"){this.setState({before:input});}
-    
+    handleChangeInYear=(e)=>{
+        
+        var radios = [this.beforeRadio,this.afterRadio,this.betweenRadio];
+        var userInput = [];
+        userInput.value = e.target.value;
+        userInput.name = e.target.name;
+        let checkedYearFilter = radios.find((e)=>e.current.checked === true);
+
+        if(checkedYearFilter !== 'undefined')
+        {
+            if(e.target.name == checkedYearFilter.current.value)
+            {
+                
+                this.setState({yearFilter:userInput});            
+            }  
+       }
+        
     }
+
 
     handlesubmit=()=>{
         console.log(this.state);
-        this.props.addFilter(this.state.title); // left off here need to re-think this 
+        this.props.addFilter(this.state.title); 
+         this.props.addYearFilter(this.state.yearFilter);
     }
 
     resetFields=()=>{
@@ -35,6 +62,7 @@ class Filter extends React.Component{
     }
     
     render(){
+        //console.log("before year "+this.state.yearFilter.value);
         return(
 
             
@@ -43,38 +71,38 @@ class Filter extends React.Component{
                 <h5 className="col">Movie Filters</h5>
                 <hr/>
                 <form className="container" ref={(el)=>this.myForm = el}>
-                <TitleForm handleChange={this.handleChange}/>
+                <TitleForm handleChange={this.handleChangeInTitle}/>
                     <br/>
                     <div className="row">
                         <h6 className="text-left">Year</h6>
                     </div>
                     <div className="row ">
                         <div className="col-1">
-                            <input type="radio"/>
+                            <input type="radio" name='year' value='before' ref={this.beforeRadio} onClick={this.checkButton}/>
                         </div>
                         <div className="col-5">
                             <p>Before</p>
                         </div>
-                        <input className="col" name="before" onChange={this.handleChange}/>
+                        <input className="col" name="before" onChange={this.handleChangeInYear}/>
                     </div>
                     <div className="row ">
                         <div className="col-1">
-                            <input type="radio"/>
+                            <input type="radio" name='year' value='after' ref={this.afterRadio} onClick={this.checkButton}/>
                         </div>
                         <div className="col-5">
                             <p>After</p>
                         </div>
-                        <input className="col"/>
+                        <input className="col" name='after' onChange={this.handleChangeInYear}/>
                     </div>
                     <div className="row">
                         <div className="col-1">
-                            <input type="radio"/>
+                            <input type="radio"  name='year' value='between' ref={this.betweenRadio} onClick={this.checkButton}/>
                         </div>
                         <div className="col-5">
                             <p>Between</p>
                         </div>
-                        <input className="col"/>
-                        <input className="col"/>
+                        <input className="col" name="between" onChange={this.handleChangeInYear}/>
+                        <input className="col" name="between" onChange={this.handleChangeInYear}/>
                     </div>
                     <br/>
                     <div className="row">
