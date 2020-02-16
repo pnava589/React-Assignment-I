@@ -9,6 +9,9 @@ class MovieItem extends React.Component{
         
         this.props.addToFavs(this.state.id, this.state.poster, this.state.title);
     };
+    getDetails=() =>{
+        this.props.getDetails(this.state.id);
+    }
     render(){
         const imgUrl = "https://image.tmdb.org/t/p/w92"+this.state.poster;
         return(
@@ -29,7 +32,7 @@ class MovieItem extends React.Component{
                             <button className="btn btn-primary" onClick={this.addToFav}><i className="fas fa-heart"></i></button>
                         </div>
                         <div className="col-md-1 align-self-center">
-                            <button className="btn btn-primary">View</button>
+                            <button className="btn btn-primary" onClick={this.getDetails}>View</button>
                         </div>
             </div>
         );
