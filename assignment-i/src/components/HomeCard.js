@@ -11,6 +11,9 @@ class HomeCard extends React.Component{
     
   }
 
+  isDisabled=()=>{
+    //if(this.state.input.userInput.length == 0) return true;
+  }
  
 
   handleChange=(e)=>{
@@ -18,13 +21,14 @@ class HomeCard extends React.Component{
     e.preventDefault();
     let newReference = [];
     newReference.userInput = e.currentTarget.value;
-    console.log(newReference);
+    //console.log(newReference);
     this.setState({input:newReference});
     
     
   }
 
   render(){
+    const isEnabled = this.state.input.length > 0;
     console.log(this.state.input);
     return(<div className="col-md-6 offset-md-3">
     <div className="card text-center">
@@ -40,7 +44,7 @@ class HomeCard extends React.Component{
           <br></br>
           <div className="text-white row">
             
-            <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary" value=" " name="matching" >Show Matching Movies</Link>
+            <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary"  name="matching" >Show Matching Movies</Link>
             
             
             <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>

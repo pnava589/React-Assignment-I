@@ -14,6 +14,8 @@ class Default extends React.Component{
 
     
     addYearFilter=(filter)=>{
+        console.log(this.state.movies);
+      
         let tempArray = this.state.movies;
         if(filter.name=='before')
             {
@@ -33,7 +35,8 @@ class Default extends React.Component{
     
     resetState=()=>{
         console.log(this.props.filter);
-        if(typeof(this.props.filter) !== 'undefined'){
+        
+        if(typeof(this.props.filter) !== 'undefined'  ){
             this.setState({movies:this.getInitialFilteredMovieList()});
     
         }
@@ -50,12 +53,24 @@ class Default extends React.Component{
     }
 
     addFilter=(input)=>{
-        if(input.value.length !== 0){
-        let filteredMovies = this.state.movies.filter((movie)=>{
-            return movie[input.name].toLowerCase().includes(input.value.toLowerCase())
-        });
-        this.setState({movies:filteredMovies});
-      }
+
+        console.log(input);
+        if(typeof(input.value) !== 'undefined'){
+            if(input.value.length !== 0){
+                let filteredMovies = this.state.movies.filter((movie)=>{
+                    return movie[input.name].toLowerCase().includes(input.value.toLowerCase())
+                });
+           this.setState({movies:filteredMovies},this.printState());
+           //console.log(filteredMovies);
+            
+       }
+       console.log(this.state.movies);
+      
+     }
+    }
+
+    printState=()=>{
+        console.log(this.state.movies);
     }
 
     componentDidMount=()=>{
@@ -100,6 +115,7 @@ class Default extends React.Component{
 
    
     render(){
+        console.log(this.state.movies);
         if (this.state.noResult){
             return(
                 <div className="container-fluid">
