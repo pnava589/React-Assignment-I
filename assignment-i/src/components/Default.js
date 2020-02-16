@@ -112,17 +112,10 @@ class Default extends React.Component{
         if(this.state.showFav){ this.setState({showFav: false}) }
         else{ this.setState({showFav: true}) }
     }
-<<<<<<< Updated upstream
-
-    
-
-   
-=======
     getDetails=(id)=>{
         const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
         fetch(url).then(response => response.json()).then(data => this.setState({singleMovie: data}));
     }
->>>>>>> Stashed changes
     render(){
         console.log(this.state.movies);
         if (this.state.noResult){
@@ -135,14 +128,9 @@ class Default extends React.Component{
                     <br/>
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
-<<<<<<< Updated upstream
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"}/>
-=======
-                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"} showDets={this.getDetails}/>
-                        <MovieDetails/>
->>>>>>> Stashed changes
+                        <MovieDetails movie={this.state.singleMovie}/>
                     </div>
                     
                 </div>
@@ -157,14 +145,9 @@ class Default extends React.Component{
                     <hr/>
                     <br/>
                     <div className="row">
-<<<<<<< Updated upstream
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query}/>
-=======
-                        <Filter addFilter={this.addFilter} resetState={this.resetState}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query} getDetails={this.getDetails}/>
                         <MovieDetails movie={this.state.singleMovie}/>
->>>>>>> Stashed changes
                     </div>
                     
                 </div>
