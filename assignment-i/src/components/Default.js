@@ -104,11 +104,6 @@ class Default extends React.Component{
     
         return JSON.parse(localStorage.getItem('data')); 
     }
-    
-    getDetails=(id)=>{
-        const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
-        fetch(url).then(response => response.json()).then(data => this.setState({singleMovie: data}));
-    }
     render(){
         console.log(this.state.movies);
         if (this.state.noResult){

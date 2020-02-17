@@ -21,13 +21,20 @@ class Details extends React.Component{
                <u>Overview:</u> {this.props.movie.details.overview}
             </div>
             <div className="col-md-12">
-            <a href={imdbUrl}>IMDB link</a>
+                <u>
+                    <a href={imdbUrl}>IMDB link</a>
+                </u>
             </div>
             <div className="col-md-12">
-                <a href={tmdbUrl}>TMDB link</a>
+                <u>
+                    <a href={tmdbUrl}>TMDB link</a>
+                </u>
             </div>
             <div className="col-md-12">
-                <u>Ratings</u>
+                <u>Number of Reviews:</u> {this.props.movie.ratings.count}
+            </div>
+            <div className="col-md-12">
+                <u>Popularity:</u> {this.props.movie.ratings.popularity}
             </div>
         </div>
         );

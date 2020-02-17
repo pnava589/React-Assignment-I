@@ -2,6 +2,7 @@ import React from "react";
 import Details from "./Details";
 import { Link } from "react-router-dom";
 import FavoritesList from "./FavoritesList";
+import Stars from "./Stars";
 
 class MovieDetails extends React.Component{
     constructor(props){
@@ -45,6 +46,7 @@ class MovieDetails extends React.Component{
                         <img className="col-md-6" src={posterUrl}/>
                     
                         <div className="col-md-6 ">
+                            <Stars num_stars={this.state.movie.ratings.average}/>
                             
                             <div className="col-md-12">
                                 <br></br>
