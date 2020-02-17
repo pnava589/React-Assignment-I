@@ -14,7 +14,7 @@ class FavoritesList extends React.Component{
     render(){
         if(this.props.showFav){
             return(
-                <div className="">
+                <div className="col-md-12">
                     <br/>
                     <div className="row text-white">
                         <div className="col-md-1 align-self-center text-center text-dark">
@@ -35,7 +35,7 @@ class FavoritesList extends React.Component{
             );
         }else{
             return(
-                <div>
+                <div className="col-md-12">
                     <br/>
                     <button className="btn btn-primary" onClick={this.props.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
                     <hr/>

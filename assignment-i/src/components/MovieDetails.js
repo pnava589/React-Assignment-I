@@ -3,6 +3,7 @@ import Details from "./Details";
 import { Link } from "react-router-dom";
 import FavoritesList from "./FavoritesList";
 import Stars from "./Stars";
+import CastCrewDetails from "./CastCrewDetails";
 
 class MovieDetails extends React.Component{
     constructor(props){
@@ -26,63 +27,72 @@ class MovieDetails extends React.Component{
         return(
             <div className="container-fluid">
                 <FavoritesList favorites={this.props.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
-                <div className="col-md-7">
-                    <div className="row bg-light">
-                        <div className="col-md-12">
-                            <br/>
-                        </div>
-                        <h4 className="col-md-6 text-left">
-                            {this.state.movie.title}
-                        </h4>
-                        <div className="col-md-5 offset-md-1">
-                            <button className="btn btn-primary" onClick={this.addToFavs}>
-                                Add to Favorites
-                            </button>
-                            <Link className="btn btn-primary" to="/default">
-                                    Close
-                            </Link>
-                        </div>
-                        
-                        <img className="col-md-6" src={posterUrl}/>
-                    
-                        <div className="col-md-6 ">
-                            <Stars num_stars={this.state.movie.ratings.average}/>
-                            
+                <div className="row">
+                    <div className="col-md-7">
+                        <div className="row bg-light">
                             <div className="col-md-12">
-                                <br></br>
-                                <h6>Details:</h6>
-                                <Details movie={this.state.movie}/>
+                                <br/>
                             </div>
-                            <br/>
-                            <div className="col-md-12 rounded border border-info">
-                                <h6>Companies:</h6> 
+                            <h4 className="col-md-6 text-left">
+                                {this.state.movie.title}
+                            </h4>
+                            <div className="col-md-5 offset-md-1">
+                                <button className="btn btn-primary" onClick={this.addToFavs}>
+                                    Add to Favorites
+                                </button>
+                                <Link className="btn btn-primary" to="/default">
+                                        Close
+                                </Link>
+                            </div>
+                            
+                            <img className="col-md-6" src={posterUrl}/>
+                        
+                            <div className="col-md-6 ">
+                                <Stars num_stars={this.state.movie.ratings.average}/>
+                                
                                 <div className="col-md-12">
-                                    {this.state.movie.production.companies.map(m => m.name+", ")}
+                                    <br></br>
+                                    <h6>Details:</h6>
+                                    <Details movie={this.state.movie}/>
+                                </div>
+                                <br/>
+                                <div className="col-md-12 rounded border border-info">
+                                    <h6>Companies:</h6> 
+                                    <div className="col-md-12">
+                                        {this.state.movie.production.companies.map(m => m.name+", ")}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                    <h6>Countries:</h6> 
+                                    <div className="col-md-12">
+                                        {this.state.movie.production.countries.map(m => m.name+", ")}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                    <h6>Keywords:</h6>
+                                    <div className="col-md-12">
+                                        {this.state.movie.details.keywords.map(m => m.name+", ")}
+                                    </div> 
+                                </div>
+                                <br/>
+                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                    <h6>Genres:</h6>
+                                    {this.state.movie.details.genres.map(m => m.name+", ")}
                                 </div>
                             </div>
-                            <br/>
-                            <div className="col-md-12 col-md-12 rounded border border-info">
-                                <h6>Countries:</h6> 
-                                <div className="col-md-12">
-                                    {this.state.movie.production.countries.map(m => m.name+", ")}
-                                </div>
-                            </div>
-                            <br/>
-                            <div className="col-md-12 col-md-12 rounded border border-info">
-                                <h6>Keywords:</h6>
-                                <div className="col-md-12">
-                                    {this.state.movie.details.keywords.map(m => m.name+", ")}
-                                </div> 
-                            </div>
-                            <br/>
-                            <div className="col-md-12 col-md-12 rounded border border-info">
-                                <h6>Genres:</h6>
-                                {this.state.movie.details.genres.map(m => m.name+", ")}
-                            </div>
+                        </div>
+                    <br/>
+                    </div>
+                    <div className="col-md-5" style={{paddingLeft: "2em", paddingRight: "2em"}}>
+                        <div className="row bg-light">
+                        <CastCrewDetails cast={this.state.movie.production.cast} 
+                                        crew={this.state.movie.production.crew}/>
                         </div>
                     </div>
-                <br/>
-            </div>
+                </div>
+                
             </div>
             
         );
