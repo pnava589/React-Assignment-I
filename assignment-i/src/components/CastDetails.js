@@ -12,7 +12,10 @@ class CastDetails extends React.Component{
                                                         {c.name} 
                                                     </div>
                                                     <div className="col-md-4 align-self-center">
-                                                        <button className="btn btn-primary">View</button>
+                                                        <button className="btn btn-primary" value={c.id} 
+                                                                        onClick={this.props.castDetails}>
+                                                                            View
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div> )}

@@ -74,6 +74,7 @@ class App extends React.Component{
                                                                           addToFavs={this.addToFavs}
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
+                                                                          
         <Route path='/about' exact component={About}/>
         
       </main>
