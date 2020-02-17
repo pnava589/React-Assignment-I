@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 class MovieItem extends React.Component{
     constructor(props){
         super(props);
@@ -32,7 +33,7 @@ class MovieItem extends React.Component{
                             <button className="btn btn-primary" onClick={this.addToFav}><i className="fas fa-heart"></i></button>
                         </div>
                         <div className="col-md-1 align-self-center">
-                            <button className="btn btn-primary" onClick={this.getDetails}>View</button>
+                            <Link className="btn btn-primary" to={`/details/${this.state.id}`} id={this.state.id}>View</Link>
                         </div>
             </div>
         );

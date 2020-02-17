@@ -1,6 +1,8 @@
 import React from "react";
 class Details extends React.Component{
     render(){
+        const tmdbUrl = "https://www.themoviedb.org/movie/"+this.props.movie.tmdb_id;
+        const imdbUrl ="https://www.imdb.com/title/"+this.props.movie.imdb_id;
         return(
             <div style={{height: "10em", overflowY: "scroll"}}>
             <div className="col-md-12">
@@ -19,10 +21,10 @@ class Details extends React.Component{
                <u>Overview:</u> {this.props.movie.details.overview}
             </div>
             <div className="col-md-12">
-                <u>IMDB link</u>
+            <a href={imdbUrl}>IMDB link</a>
             </div>
             <div className="col-md-12">
-                <u>TMDB link</u>
+                <a href={tmdbUrl}>TMDB link</a>
             </div>
             <div className="col-md-12">
                 <u>Ratings</u>
