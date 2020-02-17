@@ -8,7 +8,7 @@ class Default extends React.Component{
     constructor(props){
         super(props);
         this.state = {movies:this.props.movies, favorites: this.props.favorites, noResult: false, query: "All Movies",
-                        showFav: true,
+                        showFav: this.props.showFav,
                         singleMovie: []};
         
         
@@ -48,11 +48,7 @@ class Default extends React.Component{
 
 
     
-    addToFavs = (id,poster,title) =>{
-        let temp = this.state.favorites;
-        temp.push({id: id, poster: poster, title: title});
-        this.setState({favorites: temp});
-    }
+    
 
     addFilter=(input)=>{
 
@@ -108,10 +104,7 @@ class Default extends React.Component{
     
         return JSON.parse(localStorage.getItem('data')); 
     }
-    hideFavComp=()=>{
-        if(this.state.showFav){ this.setState({showFav: false}) }
-        else{ this.setState({showFav: true}) }
-    }
+    
     getDetails=(id)=>{
         const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
         fetch(url).then(response => response.json()).then(data => this.setState({singleMovie: data}));
@@ -121,11 +114,7 @@ class Default extends React.Component{
         if (this.state.noResult){
             return(
                 <div className="container-fluid">
-                    <br/>
-                    {this.state.showFav && <FavoritesList favorites={this.state.favorites} />}
-                    <button className="btn btn-primary" onClick={this.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
-                    <hr/>
-                    <br/>
+                    <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
@@ -138,11 +127,7 @@ class Default extends React.Component{
         else{
             return(
                 <div className="container-fluid">
-                    <br/>
-                    {this.state.showFav && <FavoritesList favorites={this.state.favorites} />}
-                    <button className="btn btn-primary" onClick={this.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
-                    <hr/>
-                    <br/>
+                    <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails}/>

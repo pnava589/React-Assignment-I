@@ -24,7 +24,7 @@ class MovieDetails extends React.Component{
         const posterUrl = "https://image.tmdb.org/t/p/w500"+this.state.movie.poster;
         return(
             <div className="container-fluid">
-                <FavoritesList favorites={this.props.favorites}/>
+                <FavoritesList favorites={this.props.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                 <div className="col-md-7">
                     <div className="row bg-light">
                         <div className="col-md-12">

@@ -12,20 +12,38 @@ class FavoritesList extends React.Component{
         this.setState(this.state);
     }
     render(){
-        return(
-            <div className="row text-white">
-                   <div className="col-md-1 align-self-center text-center text-dark">
-                        <h5>Favorites</h5>
+        if(this.props.showFav){
+            return(
+                <div className="">
+                    <br/>
+                    <div className="row text-white">
+                        <div className="col-md-1 align-self-center text-center text-dark">
+                                <h5>Favorites</h5>
+                            </div>
+                            {this.state.favorites.map((f)=><FavoriteItem 
+                                                            poster={f.poster}
+                                                            key={f.id}
+                                                            id={f.id}
+                                                            title={f.title}
+                                                            remove={this.remove}/>)}
+    
                     </div>
-                    {this.state.favorites.map((f)=><FavoriteItem 
-                                                    poster={f.poster}
-                                                    key={f.id}
-                                                    id={f.id}
-                                                    title={f.title}
-                                                    remove={this.remove}/>)}
-
+                    <button className="btn btn-primary" onClick={this.props.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
+                    <hr/>
+                    <br/>
                 </div>
-        );
+            );
+        }else{
+            return(
+                <div>
+                    <br/>
+                    <button className="btn btn-primary" onClick={this.props.hideFavComp}><i className="fas fa-angle-double-down"></i></button>
+                    <hr/>
+                    <br/>
+                </div>
+            );
+        }
+        
     }
 };
 export default FavoritesList;
