@@ -115,6 +115,7 @@ class Default extends React.Component{
     getDetails=(id)=>{
         const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
         fetch(url).then(response => response.json()).then(data => this.setState({singleMovie: data}));
+        
     }
     render(){
         console.log(this.state.movies);
@@ -129,7 +130,7 @@ class Default extends React.Component{
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"}/>
+                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={"All Movies"} getDetails={this.getDetails}/>
                         <MovieDetails movie={this.state.singleMovie}/>
                     </div>
                     
@@ -146,8 +147,8 @@ class Default extends React.Component{
                     <br/>
                     <div className="row">
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query}/>
-                        <MovieDetails movie={this.state.singleMovie}/>
+                        <MovieList movies={this.state.movies} addToFavs={this.addToFavs} query={this.state.query} getDetails={this.getDetails}/>
+                        {this.state.singleMovie.id > 0 && <MovieDetails movie={this.state.singleMovie}/>}
                     </div>
                     
                 </div>
