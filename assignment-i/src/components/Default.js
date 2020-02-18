@@ -99,10 +99,24 @@ class Default extends React.Component{
         
          
     }
-
+    sortBy=(e)=>{
+        if(e.target.name == "rating"){
+            this.state.movies.sort((a,b) =>{ if(a.ratings.average> b.ratings.average){return 1}
+                                        if(a.ratings.average< b.ratings.average){return -1}       
+                                        return 0;})
+        }else{
+            this.state.movies.sort((a,b) =>{ if(a[e.target.name]> b[e.target.name]){return 1}
+                                        if(a[e.target.name]< b[e.target.name]){return -1}       
+                                        return 0;})
+        }
+    }
     getFullMovieList=()=>{
-    
-        return JSON.parse(localStorage.getItem('data')); 
+        let sorted_list = JSON.parse(localStorage.getItem('data'));
+        sorted_list.sort((a,b)=>{ if(a.title> b.title) {return 1}
+                                    if(a.title< b.title) {return -1}
+                                    return 0;
+                                })
+        return sorted_list; 
     }
     render(){
         console.log(this.state.movies);
@@ -113,7 +127,7 @@ class Default extends React.Component{
                     <div className="row">
                         <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={"All Movies"} getDetails={this.props.getDetails}/>
+                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={"All Movies"} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>
                     
                 </div>
@@ -125,7 +139,7 @@ class Default extends React.Component{
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
-                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails}/>
+                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>
                     
                 </div>

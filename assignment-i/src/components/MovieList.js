@@ -6,6 +6,7 @@ class MovieList extends React.Component{
         this.state = {movies: this.props.movies};
         
     }
+    
     render(){
         return(
                 <div className="col-md-8 offset-md-1 align-self-center text-center bg-light">
@@ -14,18 +15,25 @@ class MovieList extends React.Component{
                     <hr/>
                     
                     <div className="container">
-                    <div className="row">
-                        <b className="col-md-5 offset-md-1 align-self-center text-center">
-                            Title
-                        </b>
-                        <b className="col-md-3 align-self-center text-center">
-                            Year
-                        </b>
-                        <b className="col-md-1 align-self-center text-left">
-                            Rating
-                        </b>
-                    </div>
-                    
+                        <div className="container">
+                            <div className="row">
+                                <a href="#"className="col-md-5 offset-md-1 align-self-center text-center text-secondary"
+                                onClick={this.props.sortBy}
+                                name="title">
+                                    Title
+                                </a>
+                                <a href="#" className="col-md-3 align-self-center text-center text-secondary" 
+                                onClick={this.props.sortBy}
+                                name="release_date">
+                                    Year
+                                </a>
+                                <a href="#" className="col-md-1 align-self-center text-left text-secondary"
+                                onClick={this.props.sortBy}
+                                name="rating">
+                                    Rating
+                                </a>
+                            </div>
+                        </div>
 
                     <div className="container" style={{height: "31em", overflowY: "scroll"}}>
                     {this.props.movies.map((p)=><MovieItem title={p.title} 
