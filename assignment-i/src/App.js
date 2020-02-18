@@ -13,7 +13,7 @@ import MovieDetails from './components/MovieDetails';
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.state = {movies:[], favorites:[], singleDetail: [], showFav: true};
+    this.state = {movies:[], favorites:[], singleMovie: [], showFav: true};
   }
   
   async componentDidMount() {
@@ -37,13 +37,18 @@ class App extends React.Component{
    }
 
   addToFavs = (id,poster,title) =>{
-    let temp = this.state.favorites;
-    temp.push({id: id, poster: poster, title: title});
-    this.setState({favorites: temp});
+    let check = this.state.favorites.find(f=> f.id == id);
+    if(check == null){
+      let temp = this.state.favorites;
+      temp.push({id: id, poster: poster, title: title});
+      this.setState({favorites: temp});
+    }
+    else{
+      alert(title+" is already in your favorites");
+    }
   }
 
   hideFavComp=(current)=>{
-    console.log(current);
       if(this.state.showFav){ this.setState({showFav: false}) }
       else{ this.setState({showFav: true}) }
   }

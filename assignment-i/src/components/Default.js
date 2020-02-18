@@ -126,7 +126,6 @@ class Default extends React.Component{
                     <div className="row">
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
                         <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails}/>
-                        {this.state.singleMovie.id > 0 && <MovieDetails movie={this.state.singleMovie} addToFavs={this.addToFavs}/>}
                     </div>
                     
                 </div>

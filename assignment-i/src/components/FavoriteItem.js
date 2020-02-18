@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 class FavoriteItem extends React.Component{
     constructor(props){
         super(props);
@@ -14,7 +15,10 @@ class FavoriteItem extends React.Component{
                 <button type="button" className="close" aria-label="Close" onClick={this.remove}>
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <Link to={`/details/${this.state.id}`} id={this.state.id}>
                     <img className="img-thumbnail" src={imgUrl} alt={this.state.title} title={this.state.title}/>
+                </Link>
+                   
             </div>
         );
     }
