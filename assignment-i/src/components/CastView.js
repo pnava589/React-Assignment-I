@@ -1,8 +1,10 @@
 import React from "react";
+import ModalImage from "react-modal-image";
 class CastView extends React.Component{
    
     render(){
-        const posterUrl = "https://image.tmdb.org/t/p/w185"+this.props.cast.profile_path;
+        const posterUrl = "https://image.tmdb.org/t/p/w342"+this.props.cast.profile_path;
+        const largeUrl = "https://image.tmdb.org/t/p/w780"+this.props.cast.profile_path;
         console.log(posterUrl);
         return(
                     <div className="col-md-7">
@@ -19,10 +21,10 @@ class CastView extends React.Component{
                                 </button>
                             </div>
                             
-                            <img className="col-md-6" src={posterUrl} alt={this.props.cast.name}/>
+                            <ModalImage className="col-md-6" small={posterUrl}
+                            large={largeUrl} alt={this.props.cast.name}/>
                         
-                            <div className="col-md-6 ">
-                                <br/>
+                            <div className="col-md-6 " style={{paddingTop: "0.5em"}}>
                                 <div className="col-md-12 rounded border border-info">
                                     <h6>Details:</h6> 
                                     <div className="col-md-12">

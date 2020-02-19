@@ -34,7 +34,7 @@ class MovieDeailView extends React.Component{
                             </div>
                             
                             <ModalImage className="col-md-6" small={posterUrl}
-                            large={largeUrl}/>
+                            large={largeUrl} alt={this.state.movie.title}/>
                         
                             <div className="col-md-6 " style={{height: "35em", overflowY: "scroll"}}>
                                 <Stars num_stars={this.state.movie.ratings.average}/>

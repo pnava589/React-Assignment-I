@@ -59,7 +59,7 @@ class App extends React.Component{
 
       <main>
         
-        <DefaultHeader />
+        <DefaultHeader/>
         
         <Route path='/' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
         <Route path='/home' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
@@ -80,7 +80,6 @@ class App extends React.Component{
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
                                                                           
-        <Route path='/about' exact component={About}/>
         
       </main>
     );

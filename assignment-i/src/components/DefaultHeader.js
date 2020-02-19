@@ -1,15 +1,27 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
-const DefaultHeader = () =>
-        <nav className="navbar navbar-dark bg-dark">
+import About from "./About";
+class DefaultHeader extends React.Component{
+    constructor(props){
+        super(props);
+        this.state ={showAbout: false}
+    }
+    toggleModal=()=>{
+        this.setState({showAbout: true})
+        console.log("toggle");
+    }
+    render(){
+        return(
+            <nav className="navbar navbar-dark bg-dark">
             <Link to='/home'>
                 <button className="btn btn-primary my-2 text-white">Home</button>
             </Link>
-            <Link to='/about'>
-            <button className="btn btn-primary my-2 text-white">About</button>
-            </Link>
+            <button className="btn btn-primary my-2 text-white" onClick={this.toggleModal}>About</button>
+            <About show={this.state.showAbout}/>
             
-        </nav>;
+        </nav>
+        );
+    }
+}
 
 export default DefaultHeader;
