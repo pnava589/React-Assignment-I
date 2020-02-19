@@ -45,6 +45,7 @@ render() {
                         <li>Bootstrap Documentation</li>
                         <li>React-modal-image</li>
                         <li>React-bootstrap-Modal</li>
+                        <li>Font Awesome Icons</li>
                     </ul>
                     <hr/>
                     <h1 className="blog-post">Github Link</h1>

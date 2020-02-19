@@ -13,8 +13,8 @@ class DefaultHeader extends React.Component{
     render(){
         return(
             <nav className="navbar navbar-dark bg-dark">
-            <Link to='/home'>
-                <button className="btn btn-primary my-2 text-white">Home</button>
+            <Link className="nav-item fas fa-film" to='/home'>
+                <i className="text-monospace"> JP Movies</i>
             </Link>
             <button className="btn btn-primary my-2 text-white" onClick={this.toggleModal}>About</button>
             <About show={this.state.showAbout}/>
