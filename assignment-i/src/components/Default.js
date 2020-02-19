@@ -2,7 +2,6 @@ import React from "react";
 import FavoritesList from "./FavoritesList";
 import MovieList from "./MovieList";
 import Filter from "./Filter";
-import MovieDetails from "./MovieDetails";
 
 class Default extends React.Component{
     constructor(props){
@@ -119,7 +118,7 @@ class Default extends React.Component{
         return sorted_list; 
     }
     render(){
-        console.log(this.state.movies);
+        
         if (this.state.noResult){
             return(
                 <div className="container-fluid">

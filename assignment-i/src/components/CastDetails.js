@@ -10,6 +10,9 @@ class CastDetails extends React.Component{
             </div>
             );
         }else{
+            this.props.cast.sort((a,b)=>{ if(a.order>b.order) return 1;
+                                            if(a.order < b.order) return -1;
+                                            return 0;})
             return(
                 <div className="row">
                         {this.props.cast.map(c=> <div className="col-md-12">

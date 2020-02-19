@@ -26,7 +26,7 @@ class About extends React.Component {
                 <h1 className="blog-post">Resources</h1>
                 <ul>
                     <li>Bootstrap Documentation</li>
-                    
+                    <li>React-modal-image</li>
                 </ul>
                 <hr/>
                 <h1 className="blog-post">Github Link</h1>

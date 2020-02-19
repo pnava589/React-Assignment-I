@@ -1,6 +1,7 @@
 import React from "react";
 import Details from "./Details";
 import Stars from "./Stars";
+import ModalImage from "react-modal-image";
 class MovieDeailView extends React.Component{
     constructor(props){
         super(props);
@@ -12,9 +13,12 @@ class MovieDeailView extends React.Component{
         }
     }
     render(){
-        const posterUrl = "https://image.tmdb.org/t/p/w500"+this.state.movie.poster;
+        const posterUrl = "https://image.tmdb.org/t/p/w342"+this.state.movie.poster;
+        const largeUrl = "https://image.tmdb.org/t/p/w780"+this.state.movie.poster;
         return(
+
             <div className="col-md-7">
+                
                         <div className="row bg-light">
                             <div className="col-md-12">
                                 <br/>
@@ -29,9 +33,10 @@ class MovieDeailView extends React.Component{
                                 
                             </div>
                             
-                            <img className="col-md-6" src={posterUrl}/>
+                            <ModalImage className="col-md-6" small={posterUrl}
+                            large={largeUrl}/>
                         
-                            <div className="col-md-6 ">
+                            <div className="col-md-6 " style={{height: "35em", overflowY: "scroll"}}>
                                 <Stars num_stars={this.state.movie.ratings.average}/>
                                 
                                 <div className="col-md-12">

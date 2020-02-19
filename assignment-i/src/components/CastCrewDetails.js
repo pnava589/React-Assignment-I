@@ -29,7 +29,7 @@ class CastCrewDetails extends React.Component{
                         
                     </ul>
                 </div>
-                <div className="card-body" style={{height: "40.5em", overflowY: "scroll"}}>
+                <div className="card-body" style={{height: "35.5em", overflowY: "scroll"}}>
                     {this.state.cast && <CastDetails cast={this.props.cast} castDetails={this.props.castDetails}/>}
                     {!this.state.cast && <CrewDetails crew={this.props.crew}/> }
                 </div>
