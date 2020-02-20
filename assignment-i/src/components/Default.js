@@ -8,7 +8,8 @@ class Default extends React.Component{
         super(props);
         this.state = {movies:this.props.movies, favorites: this.props.favorites, noResult: false, query: "All Movies",
                         showFav: this.props.showFav,
-                        singleMovie: []};
+                        singleMovie: [],
+                        showFilter: true};
         
         
     }
@@ -117,6 +118,10 @@ class Default extends React.Component{
                                 })
         return sorted_list; 
     }
+    toggleFilter=()=>{
+        if(this.state.showFilter) this.setState({showFilter: false});
+        else this.setState({showFilter: true});
+    }
     render(){
         
         if (this.state.noResult){
@@ -124,8 +129,11 @@ class Default extends React.Component{
                 <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
+                        <div className="col-md-8 offset-4 bg-dark rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
                         <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
+                        <div className="d-flex align-items-center justify-content-start bg-light">
+                            <button className="btn btn-primary fas fa-angle-double-left"></button>
+                        </div>
                         <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={"All Movies"} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>
                     
@@ -137,7 +145,11 @@ class Default extends React.Component{
                 <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
+                        {this.state.showFilter && <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>}
+                        <div className="d-flex align-items-center justify-content-start bg-light">
+                            {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
+                            { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}
+                        </div>
                         <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>
                     

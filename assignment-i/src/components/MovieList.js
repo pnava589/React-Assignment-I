@@ -9,7 +9,7 @@ class MovieList extends React.Component{
     
     render(){
         return(
-                <div className="col-md-8 offset-md-1 align-self-center text-center bg-light">
+                <div className="col ml-5 align-self-center text-center bg-light">
                     <br/>
                     <h5 className="col">Search: {this.props.query}</h5>
                     <hr/>

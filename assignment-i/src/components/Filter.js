@@ -93,8 +93,6 @@ class Filter extends React.Component{
     render(){
         console.log("year values "+this.state.yearFilter);
         return(
-
-            
             <div className="col-md-3 text-center bg-light">
                 <br/>
                 <h5 className="col">Movie Filters</h5>
@@ -173,8 +171,8 @@ class Filter extends React.Component{
                 <hr/>
                 <br/>
                 <div className='btn-toolbar'>  
-                <a className="col-md-5  btn btn-primary text-white " onClick={this.handlesubmit}>Filter</a>
-                <a to='/default' className="col-md-5 btn btn-primary text-white offset-md-1" onClick={this.resetFields}>Clear</a>
+                <a className="col-md-5  btn btn-dark text-white " onClick={this.handlesubmit}>Filter</a>
+                <a to='/default' className="col-md-5 btn btn-dark text-white offset-md-1" onClick={this.resetFields}>Clear</a>
                 </div>
             </div>
         );

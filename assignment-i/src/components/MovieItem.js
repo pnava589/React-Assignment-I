@@ -30,7 +30,7 @@ class MovieItem extends React.Component{
                             {this.state.rating}
                         </div>
                         <div className="col-md-1 align-self-center text-center">
-                            <button className="btn btn-primary" onClick={this.addToFav}><i className="fas fa-heart"></i></button>
+                            <button className="btn btn-danger" onClick={this.addToFav}><i className="fas fa-heart"></i></button>
                         </div>
                         <div className="col-md-1 align-self-center">
                             <Link className="btn btn-primary" to={`/details/${this.state.id}`} id={this.state.id}>View</Link>

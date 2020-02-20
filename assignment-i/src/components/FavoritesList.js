@@ -28,7 +28,7 @@ class FavoritesList extends React.Component{
                                                             remove={this.remove}/>)}
     
                     </div>
-                    <button className="btn btn-primary" onClick={this.props.hideFavComp}><i className="fas fa-angle-double-up"></i></button>
+                    <button className="btn btn-dark" onClick={this.props.hideFavComp}><i className="fas fa-angle-double-up"></i></button>
                     <hr/>
                     <br/>
                 </div>
@@ -37,7 +37,7 @@ class FavoritesList extends React.Component{
             return(
                 <div className="col-md-12">
                     <br/>
-                    <button className="btn btn-primary" onClick={this.props.hideFavComp}>
+                    <button className="btn btn-dark" onClick={this.props.hideFavComp}>
                         <i className="fas fa-angle-double-down"></i>
                     </button>
                     <hr/>
