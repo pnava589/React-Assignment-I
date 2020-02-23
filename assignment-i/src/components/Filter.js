@@ -1,88 +1,57 @@
 import React from "react";
 import TitleForm from './TitleForm';
 import { Link } from 'react-router-dom';
+import * as cloneDeep from "lodash/cloneDeep";
+import YearForm from "./YearForm";
+import RatingForm from "./RatingForm";
 class Filter extends React.Component{
     constructor(props){
         super(props);
         this.state={ title:[],
                      between:[],
                      yearFilter:[],
-                     ratingRadio:''
-                     
-                   }
-        this.beforeRadio = React.createRef(); 
-        this.afterRadio = React.createRef();
-        this.betweenRadio = React.createRef();
-        this.belowRadio = React.createRef(); 
-        this.aboveRadio = React.createRef();
-                   
-        
- 
-        console.log(this.props);
-    }
+                     ratingRadio:'',
+                     movies: []
+                   }      
 
-    handleRatingRadioClick=(e)=>{
-        var radios = [this.belowRadio,this.aboveRadio];
-        this.setState({ratingRadio:e.target.value});
     }
+    filterMovies=()=>{
+        let movieList = cloneDeep(this.props.movies);
+        let newList = cloneDeep(this.props.movies);
+        if(this.myForm.title.value!==""){
+            newList = movieList.filter(this.title);
+        }
+        if(this.myForm.year.value!==""){
+            newList =  newList.filter(this.year);
+        }
+        if(this.myForm.rating.value!==""){
+            newList =  newList.filter(this.rating);
+        }
+        console.log(newList);
+        this.props.filterMovies(newList);
 
-    checkButton=(e)=>{
-        e.checked = true;
     }
-    
-    
-    
-    handleChangeInRating=(e)=>{
-        console.log(e.target.value);
-        console.log(this.state.ratingRadio);
+    title=(value)=>{
+        return value.title.toLowerCase().includes(this.myForm.title.value.toLowerCase());
     }
-    
-    handleChangeInTitle=(e)=>{
-        
-        console.log(this.beforeRadio);
-        var userInput = [];
-        userInput.value = e.target.value;
-        userInput.name = e.target.name;
-        this.setState({title:userInput});
-        
-        
+    year=(value)=>{
+        if(this.myForm.year.value=== "after")
+        return value.release_date > this.myForm[this.myForm.year.value].value;
+        else if(this.myForm.year.value=== "before")
+        return value.release_date < this.myForm[this.myForm.year.value].value;
+        else 
+        return value.release_date > this.myForm[this.myForm.year.value].value && 
+                value.release_date < this.myForm[this.myForm.year.value+"1"].value;
     }
-
-    
-
-    handleChangeInYear=(e)=>{
-        console.log(e.target.name);
-       
-             
-        var radios = [this.beforeRadio,this.afterRadio,this.betweenRadio];
-        var userInput = [];
-        userInput.value = e.target.value;
-        userInput.name = e.target.name;
-        
-        let checkedYearRadioButton = radios.find((e)=>e.current.checked === true);
-        
-        
-        if(typeof(checkedYearRadioButton) !== 'undefined')
-        {
-            if(e.target.name == checkedYearRadioButton.current.value)
-            {
-                
-                this.setState({yearFilter:userInput});            
-            } 
-          
-       }
-        
+    rating=(value)=>{
+        if(this.myForm.rating.value=== "above")
+        return value.ratings.average > this.myForm[this.myForm.rating.value].value;
+        else if(this.myForm.rating.value=== "below")
+        return value.ratings.average < this.myForm[this.myForm.rating.value].value;
+        else 
+        return value.ratings.average > this.myForm[this.myForm.rating.value].value && 
+                value.ratings.average < this.myForm[this.myForm.rating.value+"1"].value;
     }
-
-
-    handlesubmit=()=>{
-        console.log(this.state);
-        
-        this.props.addFilter(this.state.title); 
-        this.props.addYearFilter(this.state.yearFilter);
-        
-    }
-
     resetFields=()=>{
         this.myForm.reset();
         let emptyArray = [];
@@ -91,88 +60,22 @@ class Filter extends React.Component{
     }
     
     render(){
-        console.log("year values "+this.state.yearFilter);
         return(
             <div className="col-md-3 text-center bg-light">
                 <br/>
                 <h5 className="col">Movie Filters</h5>
                 <hr/>
                 <form className="container" ref={(el)=>this.myForm = el}>
-                <TitleForm handleChange={this.handleChangeInTitle}/>
-                    <br/>
-                    <div className="row">
-                        <h6 className="text-left">Year</h6>
-                    </div>
-                    <div className="row ">
-                        <div className="col-1">
-                            <input type="radio" name='year' value='before' ref={this.beforeRadio} onClick={this.checkButton}/>
-                        </div>
-                        <div className="col-5">
-                            <p>Before</p>
-                        </div>
-                        <input className="col" name="before" onChange={this.handleChangeInYear}/>
-                    </div>
-                    <div className="row ">
-                        <div className="col-1">
-                            <input type="radio" name='year' value='after' ref={this.afterRadio} onClick={this.checkButton}/>
-                        </div>
-                        <div className="col-5">
-                            <p>After</p>
-                        </div>
-                        <input className="col" name='after' onChange={this.handleChangeInYear}/>
-                    </div>
-                    <div className="row">
-                        <div className="col-1">
-                            <input type="radio"  name='year' value='between' ref={this.betweenRadio} onClick={this.checkButton}/>
-                        </div>
-                        <div className="col-5">
-                            <p>Between</p>
-                        </div>
-                        <input className="col" name="between" onChange={this.handleChangeInYear} ref={this.betweenBefore}/>
-                        <input className="col" name="between" onChange={this.handleChangeInYear} ref={this.betweenAfter}/>
-                    </div>
-                    <br/>
-                    <div className="row">
-                        <h6 className="text-left">Rating</h6>
-                    </div>
-                    <div className="row ">
-                        <div className="col-1">
-                            <input type="radio" name='rating' value ='below' ref={this.belowRadio}/>
-                        </div>
-                        <div className="col-5">
-                            <p>Below</p>
-                        </div>
-                        
-                        <input type="range" min="0" max="10" className="col" onChange={this.handleChangeInRating}/>
-                        
-                    </div>
-                    <div className="row ">
-                        <div className="col-1">
-                            <input type="radio" name='rating'/>
-                        </div>
-                        <div className="col-5">
-                            <p>Above</p>
-                        </div>
-                        <input type="range" min="0" max="10" className="col"/>
-                    </div>
-                    <div className="row">
-                        <div className="col-1">
-                            <input type="radio" name='rating'/>
-                        </div>
-                        <div className="col-5">
-                            <p>Between</p>
-                        </div>
-                        <input type="range" min="0" max="10" className="col"/>
-                        <input type="range" min="0" max="10" className="col"/>
-                    </div>
-
+                    <TitleForm/>
+                    <YearForm/>
+                    <RatingForm/>    
                 </form >
                 <br/>
                 <hr/>
                 <br/>
                 <div className='btn-toolbar'>  
-                <a className="col-md-5  btn btn-dark text-white " onClick={this.handlesubmit}>Filter</a>
-                <a to='/default' className="col-md-5 btn btn-dark text-white offset-md-1" onClick={this.resetFields}>Clear</a>
+                    <a className="col-md-5  btn btn-dark text-white " onClick={this.filterMovies}>Filter</a>
+                    <a to='/default' className="col-md-5 btn btn-dark text-white offset-md-1" onClick={this.resetFields}>Clear</a>
                 </div>
             </div>
         );

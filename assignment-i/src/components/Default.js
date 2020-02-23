@@ -14,7 +14,9 @@ class Default extends React.Component{
         
     }
 
-    
+    filterMovies=(movieList)=>{
+        this.setState({movies: movieList});
+    }
     addYearFilter=(filter)=>{
         console.log(this.state.movies);
       
@@ -145,7 +147,7 @@ class Default extends React.Component{
                 <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        {this.state.showFilter && <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>}
+                        {this.state.showFilter && <Filter movies={this.state.movies} addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter} filterMovies={this.filterMovies}/>}
                         <div className="d-flex align-items-center justify-content-start bg-light">
                             {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
                             { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}

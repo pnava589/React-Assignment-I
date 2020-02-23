@@ -15,7 +15,7 @@ class TitleForm extends React.Component{
                 </div>
                 
                 <div className="row">
-                    <input className="col" name='title' type="text" onChange={this.props.handleChange}/>
+                    <input className="col" name='title' type="text"/>
                 </div>
             </div>
         );
