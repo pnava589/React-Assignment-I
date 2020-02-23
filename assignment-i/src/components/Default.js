@@ -10,12 +10,18 @@ class Default extends React.Component{
                         showFav: this.props.showFav,
                         singleMovie: [],
                         showFilter: true};
-        
+        this.loadingRef=React.createRef();
         
     }
 
     filterMovies=(movieList)=>{
-        this.setState({movies: movieList});
+        if(movieList.length === 0){
+            this.setState({noResult: true});
+        }
+        else{
+            this.setState({movies: movieList, noResult: false, query: "All Movies"});
+        }
+        
     }
     addYearFilter=(filter)=>{
         console.log(this.state.movies);
@@ -44,7 +50,7 @@ class Default extends React.Component{
             this.setState({movies:this.getInitialFilteredMovieList()});
     
         }
-        else this.setState({movies:this.getFullMovieList()});
+        else this.setState({movies:this.getFullMovieList(), noResult: false});
     
     }
 
@@ -78,7 +84,7 @@ class Default extends React.Component{
               this.setState({movies:this.getInitialFilteredMovieList(), query: this.props.filter.params.filter});
             }
             else{
-                this.setState({noResult: true, query: this.props.filter.params.filter});
+                this.setState({noResult: true});
             }
            }
            else this.setState({movies:this.getFullMovieList()});
@@ -127,16 +133,16 @@ class Default extends React.Component{
         
         if (this.state.noResult){
             return(
-                <div className="container-fluid">
+                <div className="container-fluid loading-gif">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
-                        {this.state.showFilter && <Filter movies={this.state.movies} addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter} filterMovies={this.filterMovies}/>}
+                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Found</h4></div>
+                        {this.state.showFilter && <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>}
                         <div className="d-flex align-items-center justify-content-start bg-light">
                             {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
                             { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}
                         </div>
-                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={"All Movies"} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
+                        <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={this.state.query} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>
                     
                 </div>
@@ -147,7 +153,7 @@ class Default extends React.Component{
                 <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        {this.state.showFilter && <Filter movies={this.state.movies} addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter} filterMovies={this.filterMovies}/>}
+                        {this.state.showFilter && <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>}
                         <div className="d-flex align-items-center justify-content-start bg-light">
                             {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
                             { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}
