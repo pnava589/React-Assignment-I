@@ -1,7 +1,16 @@
 import React from "react";
-import ModalImage from "react-modal-image";
+import {Modal} from "react-bootstrap";
 class CastView extends React.Component{
-   
+    constructor(props){
+        super(props);
+        this.state ={show:false};
+    }
+    close=()=>{
+        this.setState({show:false});
+    }
+    showModal=()=>{
+        this.setState({show:true});
+    }
     render(){
         const posterUrl = "https://image.tmdb.org/t/p/w342"+this.props.cast.profile_path;
         const largeUrl = "https://image.tmdb.org/t/p/w780"+this.props.cast.profile_path;
@@ -21,8 +30,8 @@ class CastView extends React.Component{
                                 </button>
                             </div>
                             
-                            <ModalImage className="col-md-6" small={posterUrl}
-                            large={largeUrl} alt={this.props.cast.name}/>
+                            <img className="col-md-6" src={posterUrl}
+                            alt={this.props.cast.name} onClick={this.showModal}/>
                         
                             <div className="col-md-6 " style={{paddingTop: "0.5em"}}>
                                 <div className="col-md-12 rounded border border-info">
@@ -47,6 +56,24 @@ class CastView extends React.Component{
                             </div>
                         </div>
                     <br/>
+                    <Modal size="lg"
+                            show={this.state.show}
+                            aria-labelledby="example-modal-sizes-title-lg">
+                                <div className="container">
+                                    <div className="row">
+                                    <h2 className="col-md-12">{this.props.cast.name}</h2>
+                                    </div>
+                                <div className="row">
+                                    <img className="col-md-12"src={largeUrl}/>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                    <button className="btn btn-primary float-right" onClick={this.close}>Close</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>     
+                    </Modal>
                     </div>
             
         );

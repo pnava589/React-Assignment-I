@@ -43,7 +43,6 @@ render() {
                     <h1 className="blog-post">Resources</h1>
                     <ul>
                         <li>Bootstrap Documentation</li>
-                        <li>React-modal-image</li>
                         <li>React-bootstrap-Modal</li>
                         <li>Font Awesome Icons</li>
                     </ul>

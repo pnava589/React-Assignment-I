@@ -9,31 +9,31 @@ class YearForm extends React.Component{
                 </div>
                 <div className="row ">
                     <div className="col-1">
-                        <input type="radio" name='year' value='before' ref={this.beforeRadio} onClick={this.checkButton}/>
+                        <input type="radio" name='year' value='before' />
                     </div>
                     <div className="col-5">
                         <p>Before</p>
                     </div>
-                    <input className="col" name="before" type="number"ref={this.beforeText} onChange={this.handleChangeInYear}/>
+                    <input className="col" name="before" type="number"/>
                 </div>
                 <div className="row ">
                     <div className="col-1">
-                        <input type="radio" name='year' value='after' ref={this.afterRadio} onClick={this.checkButton}/>
+                        <input type="radio" name='year' value='after' />
                     </div>
                     <div className="col-5">
                         <p>After</p>
                     </div>
-                    <input className="col" name='after' type="number" ref={this.afterText}onChange={this.handleChangeInYear}/>
+                    <input className="col" name='after' type="number" />
                 </div>
                 <div className="row">
                     <div className="col-1">
-                        <input type="radio"  name='year' value='between' ref={this.betweenRadio} />
+                        <input type="radio"  name='year' value='between' />
                     </div>
                     <div className="col-5">
                         <p>Between</p>
                     </div>
-                    <input className="col" name="between" type="number" onChange={this.handleChangeInYear} ref={this.betweenAbove}/>
-                    <input className="col" name="between1" type="number" onChange={this.handleChangeInYear} ref={this.aboveBetween}/>
+                    <input className="col" name="between" type="number" />
+                    <input className="col" name="between1" type="number"/>
                 </div>
                 <br/>
             </div>);

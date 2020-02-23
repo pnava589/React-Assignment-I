@@ -72,21 +72,20 @@ class Default extends React.Component{
     printState=()=>{
         console.log(this.state.movies);
     }
-
-    componentDidMount=()=>{
-        console.log(this.props.filter);
-
+    setMovies=()=>{
         if(typeof (this.props.filter) !== 'undefined'){
-          if(this.getInitialFilteredMovieList().length > 0){
-            this.setState({movies:this.getInitialFilteredMovieList(), query: this.props.filter.params.filter});
-          }
-          else{
-              this.setState({noResult: true, query: this.props.filter.params.filter});
-          }
-         }
-         else this.setState({movies:this.getFullMovieList()});
-         
-        }
+            if(this.getInitialFilteredMovieList().length > 0){
+              this.setState({movies:this.getInitialFilteredMovieList(), query: this.props.filter.params.filter});
+            }
+            else{
+                this.setState({noResult: true, query: this.props.filter.params.filter});
+            }
+           }
+           else this.setState({movies:this.getFullMovieList()});
+    }
+    componentDidMount=()=>{
+        this.setMovies();
+    }
     
 
     getInitialFilteredMovieList=()=>{
@@ -131,10 +130,11 @@ class Default extends React.Component{
                 <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        <div className="col-md-8 offset-4 bg-dark rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
-                        <Filter addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter}/>
+                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Related to: "{this.props.filter.params.filter}"</h4></div>
+                        {this.state.showFilter && <Filter movies={this.state.movies} addFilter={this.addFilter} resetState={this.resetState} addYearFilter={this.addYearFilter} filterMovies={this.filterMovies}/>}
                         <div className="d-flex align-items-center justify-content-start bg-light">
-                            <button className="btn btn-primary fas fa-angle-double-left"></button>
+                            {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
+                            { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}
                         </div>
                         <MovieList movies={this.state.movies} addToFavs={this.props.addToFavs} query={"All Movies"} getDetails={this.props.getDetails} sortBy={this.sortBy}/>
                     </div>

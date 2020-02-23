@@ -27,9 +27,7 @@ class Filter extends React.Component{
         if(this.myForm.rating.value!==""){
             newList =  newList.filter(this.rating);
         }
-        console.log(newList);
         this.props.filterMovies(newList);
-
     }
     title=(value)=>{
         return value.title.toLowerCase().includes(this.myForm.title.value.toLowerCase());
@@ -75,7 +73,7 @@ class Filter extends React.Component{
                 <br/>
                 <div className='btn-toolbar'>  
                     <a className="col-md-5  btn btn-dark text-white " onClick={this.filterMovies}>Filter</a>
-                    <a to='/default' className="col-md-5 btn btn-dark text-white offset-md-1" onClick={this.resetFields}>Clear</a>
+                    <Link to='/default' className="col-md-5 btn btn-dark text-white offset-md-1" onClick={this.resetFields}>Clear</Link>
                 </div>
             </div>
         );
