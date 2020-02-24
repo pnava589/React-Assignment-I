@@ -8,16 +8,14 @@ class Filter extends React.Component{
     constructor(props){
         super(props);
         this.state={ title:[],
-                     between:[],
                      yearFilter:[],
-                     ratingRadio:'',
                      movies: []
-                   }      
-
+                   }
     }
     filterMovies=()=>{
         let movieList = cloneDeep(this.props.movies);
         let newList = cloneDeep(this.props.movies);
+        let query= this.createQueryString();
         if(this.myForm.title.value!==""){
             newList = movieList.filter(this.title);
         }
@@ -27,7 +25,26 @@ class Filter extends React.Component{
         if(this.myForm.rating.value!==""){
             newList =  newList.filter(this.rating);
         }
-        this.props.filterMovies(newList);
+        this.props.filterMovies(newList,query);
+    }
+    createQueryString=()=>{
+        let s = '"';
+        if(this.myForm.title.value!==""){
+            s += "Title: "+this.myForm.title.value+". "
+        }
+        if(this.myForm.year.value!==""){
+            if(this.myForm.year.value==="between"){
+                s +=  "Year "+this.myForm.year.value+": "+this.myForm[this.myForm.year.value].value+"-"+this.myForm[this.myForm.year.value+"1"].value+". "
+            }
+            else s +=  "Year "+this.myForm.year.value+": "+this.myForm[this.myForm.year.value].value+". ";
+        }
+        if(this.myForm.rating.value!==""){
+            if(this.myForm.rating.value==="in"){
+                s +=  "Rating between: "+this.myForm[this.myForm.rating.value].value+"-"+this.myForm[this.myForm.rating.value+"1"].value+"."
+            }else s +=  "Rating "+this.myForm.rating.value+": "+this.myForm[this.myForm.rating.value].value+".";
+        }
+        s+= '"';
+        return s;
     }
     title=(value)=>{
         return value.title.toLowerCase().includes(this.myForm.title.value.toLowerCase());
@@ -54,9 +71,7 @@ class Filter extends React.Component{
         this.myForm.reset();
         let emptyArray = [];
         this.setState({yearFilter:emptyArray,title:emptyArray},this.props.resetState());
-        //this.props.resetState();
     }
-    
     render(){
         return(
             <div className="col-md-3 text-center bg-light">

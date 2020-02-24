@@ -6,7 +6,7 @@ constructor(props){
     this.state ={show: this.props.show};
 }
 close=()=>{
-    this.setState({show: false});
+    this.props.toggle();
 }
 componentDidUpdate=(prevState,prevProps)=>{
     if(prevProps.show != this.props.show){
@@ -15,8 +15,6 @@ componentDidUpdate=(prevState,prevProps)=>{
 }
 render() {
  return (
-       
-        
         <Modal
         size="lg"
         show={this.state.show}
@@ -44,6 +42,10 @@ render() {
                     <ul>
                         <li>Bootstrap Documentation</li>
                         <li>React-bootstrap-Modal</li>
+                        <li>React-transition-group</li>
+                        <li>Lodash array methods</li>
+                        <li>TMDB API</li>
+                        <li>IMDB Links</li>
                         <li>Font Awesome Icons</li>
                     </ul>
                     <hr/>

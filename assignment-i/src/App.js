@@ -5,37 +5,19 @@ import './components/About'
 import Home from './components/Home';
 import Default from './components/Default';
 import { Route } from 'react-router-dom';
-import About from './components/About';
 import DefaultHeader from './components/DefaultHeader';
 import MovieDetails from './components/MovieDetails';
-
+import {Modal} from "react-bootstrap";
+import loading from "./loading.gif";
 
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.state = {movies:[], favorites:[], singleMovie: [], showFav: true};
+    this.state = {movies:[], favorites:[], singleMovie: [], showFav: true, loaded: false};
   }
-  
-  async componentDidMount() {
-    if(JSON.parse(localStorage.getItem('data')) == null){
-        console.log("Local sotrage empty");
-        try {
-          const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
-          const response = await fetch(url);
-          const jsonData = await response.json();
-          //this.setState( {movies: jsonData } );
-          localStorage.setItem('data',JSON.stringify(jsonData));
-          this.setState({movies:JSON.parse(localStorage.getItem('data'))});
-          }
-          catch (error) {
-          console.error(error);
-          }
-    }
-    else this.setState({movies:JSON.parse(localStorage.getItem('data'))});
-   
-    
-   }
-
+  setMovies=(movies)=>{
+    this.setState({movies:movies});
+  }
   addToFavs = (id,poster,title) =>{
     let check = this.state.favorites.find(f=> f.id == id);
     if(check == null){
@@ -47,12 +29,13 @@ class App extends React.Component{
       alert(title+" is already in your favorites");
     }
   }
-
   hideFavComp=(current)=>{
       if(this.state.showFav){ this.setState({showFav: false}) }
       else{ this.setState({showFav: true}) }
   }
-  
+  displayLoading=(value)=>{
+    this.setState({loaded: value});
+  }
   render(){
    
     return(
@@ -60,27 +43,38 @@ class App extends React.Component{
       <main>
         
         <DefaultHeader/>
-        
+        <Modal
+          size="sm"
+          show={this.state.loaded}
+          centered
+        >
+          <div className="row justify-content-center bg-transparent align-middle">
+            <img src={loading}/>
+          </div>
+        </Modal>
         <Route path='/' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
         <Route path='/home' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />
-        <Route path='/default' exact render={(props)=><Default movies={this.state.movies} 
+        <Route path='/default' exact render={(props)=><Default movies={this.state.movies}
+                                                                          displayLoading={this.displayLoading}
+                                                                          setMovies={this.setMovies}
                                                                           favorites={this.state.favorites} 
                                                                           addToFavs={this.addToFavs}
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
-        <Route path="/default/:filter" render={({match})=><Default movies={this.state.movies} 
-                                                                          filter={match} 
+        <Route path="/default/:filter" render={({match})=><Default movies={this.state.movies}
+                                                                          filter={match}
+                                                                          setMovies={this.setMovies} 
+                                                                          displayLoading={this.displayLoading}
                                                                           favorites={this.state.favorites} 
                                                                           addToFavs={this.addToFavs}
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
         <Route path="/details/:id" exact render={({match})=><MovieDetails movie={match} 
+                                                                          displayLoading={this.displayLoading}
                                                                           favorites={this.state.favorites} 
                                                                           addToFavs={this.addToFavs}
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
-                                                                          
-        
       </main>
     );
   }

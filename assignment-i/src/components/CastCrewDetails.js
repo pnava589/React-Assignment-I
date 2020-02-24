@@ -10,7 +10,6 @@ class CastCrewDetails extends React.Component{
     toggle=()=>{
         if(this.state.cast){ this.setState({cast: false}) }
         else{ this.setState({cast: true}) }
-        
     }
     render(){
         return(

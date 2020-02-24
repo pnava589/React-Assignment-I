@@ -6,16 +6,7 @@ class HomeCard extends React.Component{
     super(props);
     this.state={input:'',buttonReference:''};
     //this.buttonReference = React.createRef();
-    console.log(this.props.filterMovies);
-    
-    
   }
-
-  isDisabled=()=>{
-    //if(this.state.input.userInput.length == 0) return true;
-  }
- 
-
   handleChange=(e)=>{
     
     e.preventDefault();
@@ -23,8 +14,6 @@ class HomeCard extends React.Component{
     newReference.userInput = e.currentTarget.value;
     //console.log(newReference);
     this.setState({input:newReference});
-    
-    
   }
 
   render(){
@@ -43,12 +32,8 @@ class HomeCard extends React.Component{
           </div>
           <br></br>
           <div className="text-white row">
-            
             <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary"  name="matching" >Show Matching Movies</Link>
-            
-            
             <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
-              
           </div>
           </form>
         </div>

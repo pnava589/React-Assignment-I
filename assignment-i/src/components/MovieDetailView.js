@@ -39,8 +39,9 @@ class MovieDeailView extends React.Component{
                                 
                             </div>
                             
-                            <img className="col-md-6"src={posterUrl}
-                            alt={this.state.movie.title} onClick={this.showModal}/>
+                                <img className="col-md-6" onClick={this.showModal} src={posterUrl}
+                                alt={this.state.movie.title} />
+                            
                              
                             <div className="col-md-6 " style={{height: "35em", overflowY: "scroll"}}>
                                 <Stars num_stars={this.state.movie.ratings.average}/>
@@ -54,32 +55,43 @@ class MovieDeailView extends React.Component{
                                 <div className="col-md-12 rounded border border-info">
                                     <h6>Companies:</h6> 
                                     <div className="col-md-12">
-                                        {this.state.movie.production.companies !== null && this.state.movie.production.companies.map(m => m.name+", ")}
+                                        <ul>
+                                        {this.state.movie.production.companies !== null && this.state.movie.production.companies.map(m => <li>{m.name}</li>)}
                                         {this.state.movie.production.companies === null && errorMsg}
+                                        </ul>
+                                        
                                     </div>
                                 </div>
                                 <br/>
                                 <div className="col-md-12 col-md-12 rounded border border-info">
                                     <h6>Countries:</h6> 
                                     <div className="col-md-12">
-                                        {this.state.movie.production.countries !== null && this.state.movie.production.countries.map(m => m.name+", ")}
+                                        <ul>
+                                        
+                                        {this.state.movie.production.countries !== null && this.state.movie.production.countries.map(m => <li>{m.name}</li>)}
                                         {this.state.movie.production.countries === null && errorMsg}
+                                            
+                                        </ul>
                                     </div>
                                 </div>
                                 <br/>
                                 <div className="col-md-12 col-md-12 rounded border border-info">
                                     <h6>Keywords:</h6>
                                     <div className="col-md-12">
-                                        {this.state.movie.details.keywords != null && this.state.movie.details.keywords.map(m => m.name+", ")}
+                                        <ul>
+                                        {this.state.movie.details.keywords != null && this.state.movie.details.keywords.map(m => <li>{m.name}</li> )}
                                         {this.state.movie.details.keywords === null && errorMsg}
+                                        </ul>
                                     </div> 
                                 </div>
                                 <br/>
                                 <div className="col-md-12 col-md-12 rounded border border-info">
                                     <h6>Genres:</h6>
                                     <div className="col-md-12">
-                                        {this.state.movie.details.genres != null && this.state.movie.details.genres.map(m => m.name+", ")}
+                                        <ul>
+                                        {this.state.movie.details.genres != null && this.state.movie.details.genres.map(m => <li>{m.name}</li> )}
                                         {this.state.movie.details.genres === null && errorMsg}
+                                        </ul>
                                     </div>
                                     
                                 </div>
@@ -98,7 +110,7 @@ class MovieDeailView extends React.Component{
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
-                                    <button className="btn btn-primary float-right" onClick={this.close}>Close</button>
+                                    <a href="#"className="btn btn-primary float-right" onClick={this.close}>Close</a>
                                     </div>
                                     
                                 </div>

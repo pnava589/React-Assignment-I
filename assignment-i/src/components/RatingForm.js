@@ -13,9 +13,7 @@ class RatingForm extends React.Component{
                         <div className="col-5">
                             <p>Below</p>
                         </div>
-                        
                         <input type="range" min="1" max="9" name="below" className="col" />
-                        
                     </div>
                     <div className="row ">
                         <div className="col-1">

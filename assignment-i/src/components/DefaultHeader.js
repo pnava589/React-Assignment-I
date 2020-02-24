@@ -7,8 +7,7 @@ class DefaultHeader extends React.Component{
         this.state ={showAbout: false}
     }
     toggleModal=()=>{
-        this.setState({showAbout: true})
-        console.log("toggle");
+        this.setState({showAbout: !this.state.showAbout})
     }
     render(){
         return(
@@ -17,7 +16,7 @@ class DefaultHeader extends React.Component{
                 <i className="text-monospace"> JP Movies</i>
             </Link>
             <button className="btn btn-primary my-2 text-white" onClick={this.toggleModal}>About</button>
-            <About show={this.state.showAbout}/>
+            <About show={this.state.showAbout} toggle={this.toggleModal}/>
             
         </nav>
         );
