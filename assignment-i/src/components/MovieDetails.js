@@ -25,19 +25,15 @@ class MovieDetails extends React.Component{
             const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
             fetch(url).then(response => response.json())
             .then(data => {this.setState({movie: data}); this.props.displayLoading(false)})
-            .catch(error=>{console.error(error); this.errorLoad(id); this.props.displayLoading(false)});
+            .catch(error=>{console.error(error); this.props.displayLoading(false)});
     }
     componentDidUpdate =(prevProps, prevState) =>{
         if(prevProps.movie.params.id !== this.props.movie.params.id){
             const id = this.props.movie.params.id;
             const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
             fetch(url).then(response => response.json()).then(data => this.setState({movie: data}))
-            .catch(error=>{console.error(error); this.errorLoad(id); this.props.displayLoading(false)});
+            .catch(error=>{console.error(error); this.props.displayLoading(false)});
         }
-    }
-    errorLoad=(id)=>{
-        const movie = this.props.movies.find(m=>m.id===id);
-        this.setState({movie: movie});
     }
     addToFavs=()=>{
         this.props.addToFavs(this.state.movie.id, this.state.movie.poster, this.state.movie.title);

@@ -52,11 +52,11 @@ class Default extends React.Component{
               catch (error) {
                 localStorage.setItem('data',JSON.stringify(data));
                 this.setState({movies: data});
+                this.props.setMovies(this.state.movies);
               }
         }
         else this.setState({movies:JSON.parse(localStorage.getItem('data'))});
         this.setMovies();
-        this.props.setMovies(this.state.movies);
         this.props.displayLoading(false);
        }
     getInitialFilteredMovieList=()=>{
