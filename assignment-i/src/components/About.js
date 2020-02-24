@@ -40,14 +40,22 @@ render() {
                     <hr/>
                     <h1 className="blog-post">Resources</h1>
                     <ul>
-                        <li>Bootstrap Documentation</li>
-                        <li>React-bootstrap-Modal</li>
-                        <li>React-router</li>
-                        <li>React-transition-group</li>
-                        <li>Lodash array methods</li>
-                        <li>TMDB API</li>
-                        <li>IMDB Links</li>
-                        <li>Font Awesome Icons</li>
+                        <li><b>Bootstrap Documentation </b> </li>
+                        <p>Acted as a main source for our styiling. For more information <a href='https://getbootstrap.com/docs/4.1/getting-started/introduction/'>click here</a> </p>
+                        <li><b> React-bootstrap-Modal </b>  </li>
+                        <p>Reference to use Modals (also known as pop-ups). For more information <a href='https://react-bootstrap.github.io/components/modal/'>click here</a> </p>
+                        <li> <b> React-router</b></li>
+                        <p>Reference used to learn how to work with Router component speically to add dynamic routes or Links in a SPA. For more information <a href='https://reacttraining.com/react-router/'>click here</a> </p> 
+                        <li><b>React-transition-group</b></li>
+                        <p>Reference used to install and define transition of modules. For more information <a href='https://reactcommunity.org/react-transition-group/'>click here</a> </p>
+                        <li><b> Lodash array methods</b> </li>
+                        <p>Reference used primarily to use array manipulation methods existing in the lodash module. For more information <a href='https://lodash.com/docs/'>click here</a> </p>
+                        <li><b>TMDB API</b></li>
+                        <p>The Movie DataBase API allowed us to get a TMDB link for each movie. For more information <a href='https://developers.themoviedb.org/3/getting-started/introduction/'>click here</a> </p>
+                        <li><b>  IMDB Links </b></li>
+                        <p>The IMBD links allows us to provide links to IMBD for every movie using the IMBD for each movie. For more information <a href='https://developers.themoviedb.org/3/getting-started/introduction/'>click here</a> </p>
+                        <li><b>  Font Awesome Icons</b></li>
+                        <p>Reference used to choose our logo for the header of the site. For more information <a href='https://fontawesome.com/icons?d=gallery/'>click here</a> </p>
                     </ul>
                     <hr/>
                     <h1 className="blog-post">Github Link</h1>
