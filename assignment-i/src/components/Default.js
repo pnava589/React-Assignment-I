@@ -3,7 +3,7 @@ import FavoritesList from "./FavoritesList";
 import MovieList from "./MovieList";
 import Filter from "./Filter";
 import { CSSTransition } from "react-transition-group";
-
+import data from "../movies-brief.json"
 class Default extends React.Component{
     constructor(props){
         super(props);
@@ -42,7 +42,7 @@ class Default extends React.Component{
         if(JSON.parse(localStorage.getItem('data')) == null){
             console.log("Local sotrage empty");
             try {
-              const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
+              const url = "https://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
               const response = await fetch(url);
               const jsonData = await response.json();
               //this.setState( {movies: jsonData } );
@@ -50,7 +50,8 @@ class Default extends React.Component{
               this.setState({movies:JSON.parse(localStorage.getItem('data'))});
               }
               catch (error) {
-              console.error(error);
+                localStorage.setItem('data',JSON.stringify(data));
+                this.setState({movies: data});
               }
         }
         else this.setState({movies:JSON.parse(localStorage.getItem('data'))});

@@ -51,11 +51,11 @@ render() {
                         <li><b> Lodash array methods</b> </li>
                         <p>Reference used primarily to use array manipulation methods existing in the lodash module. For more information <a href='https://lodash.com/docs/'>click here</a> </p>
                         <li><b>TMDB API</b></li>
-                        <p>The Movie DataBase API allowed us to get a TMDB link for each movie. For more information <a href='https://developers.themoviedb.org/3/getting-started/introduction/'>click here</a> </p>
+                        <p>The Movie DataBase API allowed us to get a TMDB link for each movie and cast details. For more information <a href='https://developers.themoviedb.org/3/getting-started/introduction/'>click here</a> </p>
                         <li><b>  IMDB Links </b></li>
                         <p>The IMBD links allows us to provide links to IMBD for every movie using the IMBD for each movie. For more information <a href='https://developers.themoviedb.org/3/getting-started/introduction/'>click here</a> </p>
                         <li><b>  Font Awesome Icons</b></li>
-                        <p>Reference used to choose our logo for the header of the site. For more information <a href='https://fontawesome.com/icons?d=gallery/'>click here</a> </p>
+                        <p>Reference used to choose our logo for the header of the site, favorites, and close icons. For more information <a href='https://fontawesome.com/icons?d=gallery/'>click here</a> </p>
                     </ul>
                     <hr/>
                     <h1 className="blog-post">Github Link</h1>
