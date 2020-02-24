@@ -2,81 +2,28 @@ import React from "react";
 import FavoritesList from "./FavoritesList";
 import MovieList from "./MovieList";
 import Filter from "./Filter";
+import { CSSTransition } from "react-transition-group";
 
 class Default extends React.Component{
     constructor(props){
         super(props);
         this.state = {movies:this.props.movies, favorites: this.props.favorites, noResult: false, query: "All Movies",
                         showFav: this.props.showFav,
+                        filter: "",
                         singleMovie: [],
-                        showFilter: true};
-        this.loadingRef=React.createRef();
-        
+                        showFilter: true
+                    };
     }
-
-    filterMovies=(movieList)=>{
+    filterMovies=(movieList, query)=>{
         if(movieList.length === 0){
-            this.setState({noResult: true});
-        }
-        else{
-            this.setState({movies: movieList, noResult: false, query: "All Movies"});
-        }
+            this.setState({noResult: true, filter: query});
+        }else this.setState({movies: movieList, noResult: false, query: query});
         
     }
-    addYearFilter=(filter)=>{
-        console.log(this.state.movies);
-      
-        let tempArray = this.state.movies;
-        if(filter.name=='before')
-            {
-                let results = tempArray.filter((e)=> new Date(e.release_date).getFullYear() < filter.value);
-                this.setState({movies:results});
-            }
-
-        else if(filter.name=='after')
-            {
-                let results = tempArray.filter((e)=> new Date(e.release_date).getFullYear() > filter.value);
-                this.setState({movies:results});   
-            }
-        
-        }
-        
-    
-    
     resetState=()=>{
-        console.log(this.props.filter);
-        
         if(typeof(this.props.filter) !== 'undefined'  ){
             this.setState({movies:this.getInitialFilteredMovieList()});
-    
-        }
-        else this.setState({movies:this.getFullMovieList(), noResult: false});
-    
-    }
-
-
-    
-    
-
-    addFilter=(input)=>{
-
-        console.log(input);
-        if(typeof(input.value) !== 'undefined'){
-            if(input.value.length !== 0){
-                let filteredMovies = this.state.movies.filter((movie)=>{
-                    return movie[input.name].toLowerCase().includes(input.value.toLowerCase())
-                });
-           this.setState({movies:filteredMovies},this.printState());
-           //console.log(filteredMovies);
-            
-       }
-       console.log(this.state.movies);
-      
-     }
-    }
-
-    printState=()=>{
-        console.log(this.state.movies);
+        }else this.setState({movies:this.getFullMovieList(), noResult: false, query: "All Movies"});
     }
     setMovies=()=>{
         if(typeof (this.props.filter) !== 'undefined'){
@@ -84,27 +31,40 @@ class Default extends React.Component{
               this.setState({movies:this.getInitialFilteredMovieList(), query: this.props.filter.params.filter});
             }
             else{
-                this.setState({noResult: true});
+                let filter = '"Title: '+this.props.filter.params.filter+'"'
+                this.setState({noResult: true, filter: filter});
+                this.setState({movies:this.getFullMovieList()})
             }
-           }
-           else this.setState({movies:this.getFullMovieList()});
+        }else this.setState({movies:this.getFullMovieList()});
     }
-    componentDidMount=()=>{
+    async componentDidMount() {
+        this.props.displayLoading(true);
+        if(JSON.parse(localStorage.getItem('data')) == null){
+            console.log("Local sotrage empty");
+            try {
+              const url = "http://wwww.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL";
+              const response = await fetch(url);
+              const jsonData = await response.json();
+              //this.setState( {movies: jsonData } );
+              localStorage.setItem('data',JSON.stringify(jsonData));
+              this.setState({movies:JSON.parse(localStorage.getItem('data'))});
+              }
+              catch (error) {
+              console.error(error);
+              }
+        }
+        else this.setState({movies:JSON.parse(localStorage.getItem('data'))});
         this.setMovies();
-    }
-    
-
+        this.props.setMovies(this.state.movies);
+        this.props.displayLoading(false);
+       }
     getInitialFilteredMovieList=()=>{
-       
         var tempArray=[];
-          
-          var tempFilter = this.props.filter.params.filter;
-          tempArray = this.getFullMovieList().filter(function(e){
+        var tempFilter = this.props.filter.params.filter;
+        tempArray = this.getFullMovieList().filter(function(e){
             return e.title.toLowerCase().includes(tempFilter.toLowerCase()); 
-          });
-          return tempArray;
-        
-         
+        });
+        return tempArray;
     }
     sortBy=(e)=>{
         if(e.target.name == "rating"){
@@ -122,7 +82,7 @@ class Default extends React.Component{
         sorted_list.sort((a,b)=>{ if(a.title> b.title) {return 1}
                                     if(a.title< b.title) {return -1}
                                     return 0;
-                                })
+                                });
         return sorted_list; 
     }
     toggleFilter=()=>{
@@ -130,14 +90,20 @@ class Default extends React.Component{
         else this.setState({showFilter: true});
     }
     render(){
-        
         if (this.state.noResult){
             return(
-                <div className="container-fluid loading-gif">
+                <div className="container-fluid">
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Movies Found</h4></div>
-                        {this.state.showFilter && <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>}
+                        <div className="col-md-8 offset-4 bg-danger rounded-pill text-white text-center"><h4>No Results for:{this.state.filter}</h4></div>
+                        <CSSTransition
+                        in={this.state.showFilter}
+                        unmountOnExit
+                        timeout={100}
+                        classNames="animiation"
+                        >
+                            <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>
+                        </CSSTransition>
                         <div className="d-flex align-items-center justify-content-start bg-light">
                             {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
                             { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}
@@ -150,10 +116,17 @@ class Default extends React.Component{
         }
         else{
             return(
-                <div className="container-fluid">
+                <div className="container-fluid" >
                     <FavoritesList favorites={this.state.favorites} hideFavComp={this.props.hideFavComp} showFav={this.props.showFav}/>
                     <div className="row">
-                        {this.state.showFilter && <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>}
+                        <CSSTransition
+                        in={this.state.showFilter}
+                        unmountOnExit
+                        timeout={100}
+                        classNames="animiation"
+                        >
+                            <Filter movies={this.state.movies} resetState={this.resetState} filterMovies={this.filterMovies}/>
+                        </CSSTransition>
                         <div className="d-flex align-items-center justify-content-start bg-light">
                             {this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-left" onClick={this.toggleFilter}/>}
                             { !this.state.showFilter && <button className="btn btn-dark border fas fa-angle-double-right" onClick={this.toggleFilter}/>}

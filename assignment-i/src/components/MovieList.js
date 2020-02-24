@@ -6,14 +6,15 @@ class MovieList extends React.Component{
         this.state = {movies: this.props.movies};
         
     }
-    
+    componentDidUpdate=()=>{
+        console.log("mounted");
+    }
     render(){
         return(
                 <div className="col ml-5 align-self-center text-center bg-light">
                     <br/>
                     <h5 className="col">Search: {this.props.query}</h5>
                     <hr/>
-                    
                     <div className="container">
                         <div className="container">
                             <div className="row">
@@ -34,7 +35,6 @@ class MovieList extends React.Component{
                                 </a>
                             </div>
                         </div>
-
                     <div className="container" style={{height: "31em", overflowY: "scroll"}}>
                     {this.props.movies.map((p)=><MovieItem title={p.title} 
                                                                 key={p.id} 

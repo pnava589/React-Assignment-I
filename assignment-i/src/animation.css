@@ -1,0 +1,27 @@
+.animiation-appear{
+    color: grey;
+    opacity: 0;
+    z-index: 1;
+}
+.animiation-appear.animiation-appear-active{
+    opacity: 1;
+    transition: opacity 1000ms linear;
+}
+.animiation-enter{
+    opacity: 0;
+    z-index: 1;
+}
+.animiation-enter.animiation-enter-active{
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+.animiation-exit{
+    left: -100px;
+    opacity: 1;
+}
+.animiation-exit.animiation-exit-active{
+    left: -200px;
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+

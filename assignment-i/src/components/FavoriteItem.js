@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 class FavoriteItem extends React.Component{
     constructor(props){
         super(props);
@@ -20,7 +21,7 @@ class FavoriteItem extends React.Component{
         }
         const imgUrl = "https://image.tmdb.org/t/p/w92"+this.state.poster;
         return(
-            <div className="col-md-1 align-self-center ">
+            <div className="col-md-1 align-self-center">
                 <button type="button" style={closeStyle} className="close" aria-label="Close" onClick={this.remove}>
                     <span aria-hidden="true">&times;</span>
                 </button>

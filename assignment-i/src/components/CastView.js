@@ -30,11 +30,11 @@ class CastView extends React.Component{
                                 </button>
                             </div>
                             
-                            <img className="col-md-6" src={posterUrl}
+                            <img className="col-md-6 detail-view" src={posterUrl}
                             alt={this.props.cast.name} onClick={this.showModal}/>
                         
                             <div className="col-md-6 " style={{paddingTop: "0.5em"}}>
-                                <div className="col-md-12 rounded border border-info">
+                                <div className="col-md-12 rounded border border-dark">
                                     <h6>Details:</h6> 
                                     <div className="col-md-12">
                                       Born: {this.props.cast.birthday}, {this.props.cast.place_of_birth}
@@ -46,9 +46,10 @@ class CastView extends React.Component{
                                     <br/>
                                 </div>
                                 <br/>
-                                <div className="col-md-12 rounded border border-info" >
+                                <div className="col-md-12 rounded border border-dark" >
                                     <h6>Biography:</h6> 
                                     <div className="col-md-12" style={{height: "20em", overflowY: "scroll"}}>
+                                      {this.props.cast.biography ==="" && "No info available"}
                                       {this.props.cast.biography}
                                     </div>
                                     <br/>

@@ -18,10 +18,10 @@ class MovieItem extends React.Component{
         return(
             <div className="row">
                         <div className="col-md-1">
-                            <img className="img-thumbnail" src={imgUrl} alt={this.title}/>
+                            <Link to={`/details/${this.state.id}`} id={this.state.id}><img className="img-thumbnail" src={imgUrl} alt={this.title}/></Link>
                         </div>
                         <div className="col-md-5 align-self-center text-center">
-                            <h6>{this.state.title}</h6>
+                            <Link className="text-dark"to={`/details/${this.state.id}`} id={this.state.id}><h6>{this.state.title}</h6></Link>
                         </div>
                         <div className="col-md-3 align-self-center text-center">
                             {new Date(this.state.year).getFullYear()}
