@@ -70,6 +70,7 @@ class App extends React.Component{
                                                                           showFav={this.state.showFav}
                                                                           hideFavComp={this.hideFavComp}/>}/>
         <Route path="/details/:id" exact render={({match})=><MovieDetails movie={match} 
+                                                                          movies={this.state.movies}
                                                                           displayLoading={this.displayLoading}
                                                                           favorites={this.state.favorites} 
                                                                           addToFavs={this.addToFavs}
