@@ -11,7 +11,7 @@ class TitleForm extends React.Component{
                 <div className="row">
                     <h6 className="text-left">Title</h6>
                 </div>
-                <div clsassName="row">
+                <div className="row">
                     <input className="col" name='title' type="text"/>
                 </div>
             </div>

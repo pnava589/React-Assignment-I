@@ -15,7 +15,7 @@ class CastDetails extends React.Component{
                                             return 0;})
             return(
                 <div className="row">
-                        {this.props.cast.map(c=> <div className="col-md-12">
+                        {this.props.cast.map(c=> <div className="col-md-12" key={c.id}>
                                                     <div className="row" style={{marginBottom: "1em"}}>
                                                         <div className="col-md-4 align-self-center">
                                                             {c.character} 

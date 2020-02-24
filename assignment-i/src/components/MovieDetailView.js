@@ -39,7 +39,7 @@ class MovieDeailView extends React.Component{
                                 
                             </div>
                             
-                                <img className="col-md-6" onClick={this.showModal} src={posterUrl}
+                                <img className="col-md-6 detail-view" onClick={this.showModal} src={posterUrl}
                                 alt={this.state.movie.title} />
                             
                              
@@ -52,44 +52,44 @@ class MovieDeailView extends React.Component{
                                     <Details movie={this.state.movie}/>
                                 </div>
                                 <br/>
-                                <div className="col-md-12 rounded border border-info">
+                                <div className="col-md-12 rounded border border-dark">
                                     <h6>Companies:</h6> 
                                     <div className="col-md-12">
                                         <ul>
-                                        {this.state.movie.production.companies !== null && this.state.movie.production.companies.map(m => <li>{m.name}</li>)}
+                                        {this.state.movie.production.companies !== null && this.state.movie.production.companies.map(m => <li key={m.id}>{m.name}</li>)}
                                         {this.state.movie.production.companies === null && errorMsg}
                                         </ul>
                                         
                                     </div>
                                 </div>
                                 <br/>
-                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                <div className="col-md-12 col-md-12 rounded border border-dark">
                                     <h6>Countries:</h6> 
                                     <div className="col-md-12">
                                         <ul>
                                         
-                                        {this.state.movie.production.countries !== null && this.state.movie.production.countries.map(m => <li>{m.name}</li>)}
+                                        {this.state.movie.production.countries !== null && this.state.movie.production.countries.map(m => <li key={m.iso_3166_1}>{m.name}</li>)}
                                         {this.state.movie.production.countries === null && errorMsg}
                                             
                                         </ul>
                                     </div>
                                 </div>
                                 <br/>
-                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                <div className="col-md-12 col-md-12 rounded border border-dark">
                                     <h6>Keywords:</h6>
                                     <div className="col-md-12">
                                         <ul>
-                                        {this.state.movie.details.keywords != null && this.state.movie.details.keywords.map(m => <li>{m.name}</li> )}
+                                        {this.state.movie.details.keywords != null && this.state.movie.details.keywords.map(m => <li key={m.id}>{m.name}</li> )}
                                         {this.state.movie.details.keywords === null && errorMsg}
                                         </ul>
                                     </div> 
                                 </div>
                                 <br/>
-                                <div className="col-md-12 col-md-12 rounded border border-info">
+                                <div className="col-md-12 col-md-12 rounded border border-dark">
                                     <h6>Genres:</h6>
                                     <div className="col-md-12">
                                         <ul>
-                                        {this.state.movie.details.genres != null && this.state.movie.details.genres.map(m => <li>{m.name}</li> )}
+                                        {this.state.movie.details.genres != null && this.state.movie.details.genres.map(m => <li key={m.id}>{m.name}</li> )}
                                         {this.state.movie.details.genres === null && errorMsg}
                                         </ul>
                                     </div>
