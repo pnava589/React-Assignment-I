@@ -32,7 +32,7 @@ class HomeCard extends React.Component{
           <br></br>
           <div className="text-white row">
             <Link to={`/default/${this.state.input.userInput}`} className="col-md-4 offset-md-2 btn btn-primary"  name="matching" >Show Matching Movies</Link>
-            <Link to='/default' className="offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
+            <Link to='/default' className="col-md-3 offset-md-1 btn btn-primary" name='all' value=" ">Show All Movies</Link>
           </div>
           </form>
         </div>
