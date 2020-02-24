@@ -42,6 +42,7 @@ render() {
                     <ul>
                         <li>Bootstrap Documentation</li>
                         <li>React-bootstrap-Modal</li>
+                        <li>React-router</li>
                         <li>React-transition-group</li>
                         <li>Lodash array methods</li>
                         <li>TMDB API</li>
