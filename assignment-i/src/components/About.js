@@ -9,7 +9,7 @@ close=()=>{
     this.props.toggle();
 }
 componentDidUpdate=(prevState,prevProps)=>{
-    if(prevProps.show != this.props.show){
+    if(prevProps.show !== this.props.show){
         this.setState({show: this.props.show})
     }
 }

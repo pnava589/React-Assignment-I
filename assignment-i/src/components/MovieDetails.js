@@ -27,7 +27,7 @@ class MovieDetails extends React.Component{
             .then(data => {this.setState({movie: data}); this.props.displayLoading(false)});
     }
     componentDidUpdate =(prevProps, prevState) =>{
-        if(prevProps.movie.params.id != this.props.movie.params.id){
+        if(prevProps.movie.params.id !== this.props.movie.params.id){
             const id = this.props.movie.params.id;
             const url = "http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+id;
             fetch(url).then(response => response.json()).then(data => this.setState({movie: data}));

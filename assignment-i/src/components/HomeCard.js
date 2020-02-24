@@ -17,8 +17,7 @@ class HomeCard extends React.Component{
   }
 
   render(){
-    const isEnabled = this.state.input.length > 0;
-    console.log(this.state.input);
+    
     return(<div className="col-md-6 offset-md-3">
     <div className="card text-center">
       <h5 className="card-header">

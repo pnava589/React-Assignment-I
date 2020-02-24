@@ -65,7 +65,7 @@ class CastView extends React.Component{
                                     <h2 className="col-md-12">{this.props.cast.name}</h2>
                                     </div>
                                 <div className="row">
-                                    <img className="col-md-12"src={largeUrl}/>
+                                    <img alt={this.props.cast.name} className="col-md-12"src={largeUrl}/>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">

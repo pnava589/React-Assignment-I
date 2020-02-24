@@ -19,7 +19,7 @@ class App extends React.Component{
     this.setState({movies:movies});
   }
   addToFavs = (id,poster,title) =>{
-    let check = this.state.favorites.find(f=> f.id == id);
+    let check = this.state.favorites.find(f=> f.id === id);
     if(check == null){
       let temp = this.state.favorites;
       temp.push({id: id, poster: poster, title: title});
@@ -49,7 +49,7 @@ class App extends React.Component{
           centered
         >
           <div className="row justify-content-center bg-transparent align-middle">
-            <img src={loading}/>
+            <img alt="loading" src={loading}/>
           </div>
         </Modal>
         <Route path='/' exact render={(props)=><Home filterMovies={this.filterMovies}/>} />

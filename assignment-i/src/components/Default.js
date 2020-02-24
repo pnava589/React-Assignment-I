@@ -68,7 +68,7 @@ class Default extends React.Component{
         return tempArray;
     }
     sortBy=(e)=>{
-        if(e.target.name == "rating"){
+        if(e.target.name === "rating"){
             this.state.movies.sort((a,b) =>{ if(a.ratings.average> b.ratings.average){return 1}
                                         if(a.ratings.average< b.ratings.average){return -1}       
                                         return 0;})

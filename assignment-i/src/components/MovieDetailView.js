@@ -8,7 +8,7 @@ class MovieDeailView extends React.Component{
         this.state = {movie: this.props.movie, show:false};
     }
     componentDidUpdate =(prevProps, prevState) =>{
-        if(prevProps.movie.id != this.props.movie.id){
+        if(prevProps.movie.id !== this.props.movie.id){
             this.setState({movie: this.props.movie});
         }
     }
@@ -106,7 +106,7 @@ class MovieDeailView extends React.Component{
                                     <h2 className="col-md-12">{this.state.movie.title}</h2>
                                     </div>
                                 <div className="row">
-                                    <img className="col-md-12"src={largeUrl}/>
+                                    <img className="col-md-12"src={largeUrl} alt={this.state.movie.title}/>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
