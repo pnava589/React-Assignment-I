@@ -24,4 +24,31 @@
     opacity: 0;
     transition: opacity 100ms linear;
 }
+.fade-appear{
+    color: grey;
+    opacity: 0;
+    z-index: 1;
+}
+.fade-appear.fade-appear-active{
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+.fade-enter{
+    opacity: 0;
+    z-index: 1;
+}
+.fade-enter.fade-enter-active{
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+.fade-exit{
+    left: -100px;
+    opacity: 1;
+}
+.fade-exit.fade-exit-active{
+    left: -200px;
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+
 

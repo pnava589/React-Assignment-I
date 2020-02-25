@@ -28,7 +28,7 @@ class MovieList extends React.Component{
                                 name="release_date">
                                     Year
                                 </a>
-                                <a href="#" className="col-md-1 align-self-center text-left text-secondary"
+                                <a href="#" className="col-md-3 align-self-center text-left text-secondary"
                                 onClick={this.props.sortBy}
                                 name="rating">
                                     Rating
