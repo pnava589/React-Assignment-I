@@ -11,7 +11,22 @@ class CrewDetails extends React.Component{
                                         return 0;
                                     });
         return(
+            
             <div className="row">
+                <div className="col-md-12">
+                            <div className="row">
+                                <div className="col-md-4 align-self-center">
+                                    Deparment
+                                </div>
+                                <div className="col-md-4 align-self-center">
+                                    Job
+                                </div>
+                                <div className="col-md-4 align-self-center">
+                                    Name
+                                </div>
+                            </div>
+                            <hr/>
+                        </div>
                     {this.props.crew.map(c=> <div className="col-md-12">
                                                 <div className="row" style={{marginBottom: "1em"}}>
                                                     <div className="col-md-4 align-self-center">
